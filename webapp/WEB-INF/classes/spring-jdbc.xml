@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+	xmlns:sec="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+	   http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+	   http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+	   http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa.xsd
+	   http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd">
+
+	<!-- 扫描事务注解 -->
+	<tx:annotation-driven transaction-manager="transactionManager"
+		proxy-target-class="true" />
+	<!-- 
+    	alibaba Druid 数据库连接池
+    	通常来说，只需要修改initialSize、minIdle、maxActive。
+		如果用Oracle，则把poolPreparedStatements配置为true，
+		mysql可以配置为false。分库分表较多的数据库，建议配置为false。 
+	-->
+    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
+        <property name="url" value="${jdbc.url}" />
+        <property name="username" value="${jdbc.username}" />
+        <property name="password" value="${jdbc.password}" />
+        <!-- 配置初始化大小、最小、最大 -->
+      	<property name="initialSize" value="1" />
+      	<property name="minIdle" value="1" /> 
+      	<property name="maxActive" value="20" />
+        <!-- 配置获取连接等待超时的时间 -->
+      	<property name="maxWait" value="60000" />
+        <!-- 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒 -->
+        <property name="timeBetweenEvictionRunsMillis" value="60000" />
+        <!-- 配置一个连接在池中最小生存的时间，单位是毫秒 -->
+        <property name="minEvictableIdleTimeMillis" value="300000" />
+        <!-- 申请连接的时候检测 -->
+        <property name="validationQuery" value="SELECT 'x' FROM DUAL" />
+        <property name="testWhileIdle" value="true" />
+        <property name="testOnBorrow" value="false" />
+        <property name="testOnReturn" value="false" />
+        <!-- 打开PSCache，并且指定每个连接上PSCache的大小 -->
+      	<property name="poolPreparedStatements" value="true" />
+      	<property name="maxPoolPreparedStatementPerConnectionSize" value="100" />
+      	<!-- 配置监控统计拦截的filters -->
+      	<property name="filters" value="mergeStat" />
+      	<!-- 合并SQL
+      	<property name="connectionProperties" value="druid.stat.mergeSql=true" /> -->
+      	<!-- StatFilter的属性slowSqlMillis用来配置SQL慢的标准（ 慢SQL记录） 超过3秒表示SQL语句慢 -->
+      	<property name="connectionProperties" value="druid.stat.slowSqlMillis=3000" />
+      	<!-- asyncInit是1.1.4中新增加的配置，如果有initialSize数量较多时，打开会加快应用启动时间 -->
+      	<property name="asyncInit" value="true" />
+    </bean>
+
+	<!-- JPA实体管理工厂的配置 -->
+	<bean id="entityManagerFactory"
+		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="jpaVendorAdapter" ref="hibernateJpaVendorAdapter" />
+		<property name="packagesToScan"
+			value="com.jpaAndActivity.domain" /><!--待扫描的实体类包，不再需要persistence.xml了 -->
+
+		<property name="jpaProperties">
+			<props>
+				<!-- <prop key="hibernate.ejb.naming_strategy">org.hibernate.cfg.ImprovedNamingStrategy</prop> 
+					<prop key="hibernate.cache.region.factory_class">org.hibernate.cache.ehcache.EhCacheRegionFactory</prop> 
+					<prop key="hibernate.hbm2ddl.auto">update</prop> -->
+				<prop key="hibernate.hbm2ddl.auto">${hbm2ddl_auto}</prop>
+				<prop key="hibernate.show_sql">${show_sql}</prop>
+				<prop key="hibernate.fomat_sql">${fomat_sql}</prop>
+				<prop key="hibernate.hbm2ddl.auto">create</prop>
+			</props>
+		</property>
+
+	</bean>
+
+	<!--指定实现JPA的适配器 -->
+	<bean id="hibernateJpaVendorAdapter"
+		class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+		<property name="databasePlatform" value="${jdbc.dialect}" />
+	</bean>
+
+	<!-- Jpa 事务配置 -->
+	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+		<property name="entityManagerFactory" ref="entityManagerFactory" />
+	</bean>
+
+	<!-- 配置Spring Data JPA扫描目录 -->
+	<jpa:repositories base-package="com.jpaAndActivity.dao" 
+		repository-impl-postfix="Impl" 
+        query-lookup-strategy="create-if-not-found"
+        factory-class="com.jpaAndActivity.base.BaseRepositoryFactoryBean"
+        entity-manager-factory-ref="entityManagerFactory"
+        transaction-manager-ref="transactionManager"/>
+
+	<!-- 主键生成器 -->
+	<bean id="idGenerator" class="com.jpaAndActivity.common.SnowFlakeIdGenerator">
+		<constructor-arg value="0"/>
+	</bean>
+
+</beans>

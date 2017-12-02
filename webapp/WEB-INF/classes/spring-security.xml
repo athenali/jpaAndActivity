@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:mybatis="http://mybatis.org/schema/mybatis-spring"
+	xmlns:sec="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+	   http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+	   http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+	   http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring.xsd
+	   http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd">
+
+	<!-- 权限控制
+	<sec:http security="none" pattern="/favicon.ico" />
+	<sec:http security="none" pattern="/**/*.js" />
+	<sec:http security="none" pattern="/**/*.css" />
+	<sec:http security="none" pattern="/**/*.jpg" />
+	<sec:http security="none" pattern="/**/*.gif" />
+	<sec:http security="none" pattern="/**/*.png" />
+
+	<sec:http auto-config='true'>
+		<sec:intercept-url pattern="/login.jsp"
+			access="IS_AUTHENTICATED_ANONYMOUSLY" />
+		<sec:intercept-url pattern="/**" access="IS_AUTHENTICATED_FULLY" />
+
+		<sec:form-login login-page="/login.jsp"
+			default-target-url="/" />
+
+	</sec:http>
+
+	<sec:authentication-manager>
+		<sec:authentication-provider>
+			<sec:jdbc-user-service data-source-ref="dataSource" 
+                                   users-by-username-query="
+select username,password,1 as enabled
+  from USER_INFO
+ where username=?
+                                   "
+                                   authorities-by-username-query="
+select u.username,r.code as authority
+from USER_INFO u
+join USER_ROLE ur
+on u.id=ur.user_id
+join ROLE_INFO r
+on r.id=ur.role_id
+where u.username=?
+									"/>
+		</sec:authentication-provider>
+	</sec:authentication-manager> -->
+
+	<!-- <bean class="org.springframework.security.access.event.LoggerListener"/> 
+		<bean class="org.springframework.security.authentication.event.LoggerListener"/> -->
+
+</beans>
