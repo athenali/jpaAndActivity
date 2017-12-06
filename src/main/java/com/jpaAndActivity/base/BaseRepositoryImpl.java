@@ -39,9 +39,9 @@ public class BaseRepositoryImpl<T, ID extends Serializable> extends SimpleJpaRep
 	 * @param params
 	 *            查询条件字段-值MAP
 	 * @param start
-	 *            获取的结果集起始位置
+	 *            获取的结果集起始位置,从第几页开始查询
 	 * @param maxRow
-	 *            获取的最大结果集总数
+	 *            获取的最大结果集总数，每页查询的最大数目
 	 * @return 已分好页的分页结果对象
 	 */
 	@SuppressWarnings({ "unchecked" })
