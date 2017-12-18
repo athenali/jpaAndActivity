@@ -8,11 +8,18 @@ import javax.annotation.Resource;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.jpaAndActivity.common.DynamicSpecifications;
 import com.jpaAndActivity.common.PageSupport;
+import com.jpaAndActivity.common.SearchFilter;
 import com.jpaAndActivity.dao.UserInfoRepository;
+import com.jpaAndActivity.domain.MenuInfo;
 import com.jpaAndActivity.domain.UserInfo;
 import com.jpaAndActivity.dto.UserInfoDTO;
 
@@ -51,6 +58,22 @@ public class JPATest {
           List<UserInfoDTO> result = (List<UserInfoDTO>) findPageSupportBySQL.getResult();
 		for (UserInfoDTO userInfoDTO : result) {
 			System.out.println(userInfoDTO.getUserName()+"++++++++++"+userInfoDTO.getDeptName());
+		}
+	}
+	/**
+	 * 将查询条件封装到filterParams中，进行分页查询
+	 * @param pageable
+	 * @param filterParams
+	 */
+	@Test
+	public void pageQuery() {
+		Pageable pageable=new PageRequest(0, 10);
+	   Map<String,SearchFilter>filterParams=new HashMap<>();
+		Specification<UserInfo> specification = DynamicSpecifications.bySearchFilter(filterParams.values(), UserInfo.class);
+		Page<UserInfo> findAll = userInfoRepository.findAll(specification, pageable);
+	    List<UserInfo> content = findAll.getContent();
+	    for (UserInfo userInfo : content) {
+			System.out.println(userInfo.getUsername());
 		}
 	}
 	
