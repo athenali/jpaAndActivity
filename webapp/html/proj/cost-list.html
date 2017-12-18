@@ -1,0 +1,41 @@
+<script src="../../js/inner/cost.js"></script>
+<div class="expert-body">
+	<div>
+		<h3 class="m-crumb">
+			当前位置：<span>人事管理-成本管理</span>
+		</h3>
+		<div class="box">
+			<div class="opera-box">
+				<span class="tit">项目名称：</span> <input type="text"
+					class="form-control" id="name" /> <span class="tit">项目状态：</span>
+				<!-- 				<input type="text" class="form-control" id="status" /> -->
+				<select class="form-control" id="status" name="status">
+					<option value=0>所有状态</option>
+					<option value=1>合同签订</option>
+					<option value=2>现场调研</option>
+					<option value=3>提交初稿</option>
+					<option value=4>提交终稿</option>
+					<option value=5>项目结束</option>
+				</select> <a class="btn btn-default btn-query" id="searchBtn"><i class="icon fa fa-search"></i> 查 询</a>
+			</div>
+			<div class="table-box">
+				<table class="table table-bordered" id="table">
+					<thead>
+						<tr>
+							<th>序号</th>
+							<th>项目名称</th>
+							<th>项目负责人</th>
+							<th>联系电话</th>
+							<th>客户名称</th>
+							<th>项目状态</th>
+							<th>成本合计</th>
+							<th>操作</th>
+						</tr>
+					</thead>
+					<tbody>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>

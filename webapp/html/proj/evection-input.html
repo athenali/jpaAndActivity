@@ -1,0 +1,49 @@
+		<h3 class="m-crumb">
+			当前位置：<span>人事管理 - 休假申请</span>
+		</h3>
+		<div class="box">
+			<div class="table-box">
+				<form id="addForm" class="form-horizontal">
+					<input type="hidden" name="type" value="休假">
+					<div class="form-group">
+						<label class="col-md-1 control-label">申请人</label>
+						<div class="col-md-3">
+							<p class="form-control-static">user</p>
+						</div>
+						<label class="col-md-1 control-label">处室</label>
+						<div class="col-md-3">
+							<p class="form-control-static">dept</p>
+						</div>
+						<label class="col-md-1 control-label">申请时间</label>
+						<div class="col-md-3">
+							<p class="form-control-static">2017-09-15</p>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-1 control-label">请假日期</label>
+						<div class="col-md-11">
+							自
+							<input type="text" class="form-control datepicker" name="startDate" placeholder="请输入开始时间" required maxlength="50" style="width:auto;display:inline-block;" />
+							至
+							<input type="text" class="form-control datepicker" name="endDate" placeholder="请输入结束时间" required maxlength="50" style="width:auto;display:inline-block;" />
+							共
+							<input type="text" class="form-control" name="day" placeholder="请输入天数" required maxlength="50" style="width:auto;display:inline-block;" />
+							天
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-1 control-label">请假事由</label>
+						<div class="col-md-11">
+							<textarea rows="2" class="form-control" name="reason" placeholder="请输入请假事由" maxlength="200" ></textarea>
+						</div>
+					</div>
+					<span id="addErrorMessage" style="color:red"></span>
+					<div class="form-group">
+						<div class="col-md-11 col-md-offset-1">
+							<button type="button" class="btn btn-default" id="addBtn"><i class="icon fa fa-save"></i> 保存</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	<script src="../../js/inner/leave-input.js"></script>

@@ -1,0 +1,81 @@
+    .table{
+            height:auto;
+            border: 0px solid #000000;
+            position: relative;
+        }
+        li{
+            list-style: none;
+            height:50px;
+        }
+        
+        li>.one{
+            width: 15%;
+            height: 50px;
+            text-align: right;
+            font-weight: bold;
+            line-height: 50px;
+            position:absolute;
+            left: 1%;
+        }
+        li>.two{
+            width: 30%;
+            height: 50px;
+            text-align: left;
+            line-height: 50px;
+            position:absolute;
+            left: 17%;
+        }
+        li>.three{
+            width: 10%;
+            height: 50px;
+            text-align: right;
+            font-weight: bold;
+            line-height: 50px;
+            position:absolute;
+            left: 40%;
+        }
+        li>.four{
+            width: 20%;
+            height: 50px;
+            text-align: left;
+            line-height: 50px;
+            position:absolute;
+            left:50%;
+        }
+        li>.five{
+            width: 10%;
+            height: 50px;
+            text-align: right;
+            font-weight: bold;
+            line-height: 50px;
+            position:absolute;
+            left: 70%;
+        }
+        li>.six{
+            width: 20%;
+            height: 50px;
+            text-align: left;
+            line-height: 50px;
+            position:absolute;
+            left:80%;
+        }
+        li>.seven{
+            width: 50%;
+            height: 50px;
+            text-align: left;
+            line-height: 50px;
+            position:absolute;
+            left:50%;
+        }
+        #content > hr{
+        	height:0px;
+        	border-top:1px dashed #0066CC;
+        	margin: 0px;
+        }
+        .page-header{
+        	margin: 0;
+        	background: #e4e6e9;
+        }
+        #table > thead > tr > th, #tbody{
+        	text-align: center;
+        }

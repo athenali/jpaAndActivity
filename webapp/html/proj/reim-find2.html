@@ -1,0 +1,87 @@
+<script src="../../js/inner/reim-find2.js" type="text/javascript"></script>
+<link rel="stylesheet" href="../../css/find.css">
+<style type="text/css">
+	ul > li > input{
+	    border: 0;
+    	outline: none;
+    	width: 280px;
+	}
+	.title{
+		 float: left;
+   		 width: 100px;
+	}
+</style>
+<body class="expert-body">
+	<h4 class="m-crumb">当前位置：<span>我的待办-待办审批</span></h4>
+    <div class="manage_detail">
+        <div class="row clearfix">
+            <div class="page-header">申请信息</div>
+            <form id="reimFrom">
+            <div class="table">
+			    <ul style="margin-left: 16px;">
+			        <li>
+			           	申请人员：<input name="userName"  readonly/>
+			           	项目名称：<input name="projectName"  readonly/>
+			           	费用类型：<input name="type"  readonly/>
+			        <br/><br/>
+			        </li>
+			        <li>
+			           	开始时间：<input name="startTime"  readonly/>
+			           	结束时间：<input name="endTime"  readonly/>
+			           	总金额：<input name="totalPrice"  readonly/>
+					 <br/><br/>
+			        </li>
+			    </ul>
+				<div class="form_item" style="margin-left: 16px;">
+                   	报销事由： <span name="reason" id="textarea_reason"></span>
+                </div>
+			</div>
+			</form>
+		</div>
+		<div class="table-box">
+		<table class="table table-bordered" id="detailTable">
+			<thead>
+				<tr>
+					<th>费用类型</th>
+					<th>发生时间</th>
+					<th>结束时间</th>
+					<th>费用金额</th>
+					<th>费用说明</th>
+					<th>附件</th>
+				</tr>
+			</thead>
+			<tbody>
+			</tbody>
+		</table>
+	</div>
+        <div class="row clearfix">
+            <div class="page-header">审批信息</div>
+            <div class="table-box">
+                <table class="table table-bordered" id="approvalTable">
+                    <thead>
+						<tr>
+						  <th>处理人</th>
+						    <th>审批节点</th>
+							<th>审批状态</th>
+							<th>审批意见</th>
+							<th>审批时间</th>
+						</tr>
+					</thead>
+					<tbody id="tbody">
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<div class="container">
+	<div class="row clearfix">
+		<div class="col-md-5 column">
+		</div>
+		<div class="col-md-2 column">
+			 <button type="button" class="btn btn-default btn-block btn-inverse"  id="returnBtn">返回</button>
+		</div>
+		<div class="col-md-5 column">
+		</div>
+	</div>
+	</div>
+    </div>
+</body>

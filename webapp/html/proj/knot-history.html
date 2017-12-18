@@ -1,0 +1,142 @@
+<script src="../../js/inner/knot-approve.js"></script>
+<link rel="stylesheet" href="../../css/find.css">
+<!-- ************ID用于刷新页面***********************-->
+<input type="hidden" id="projectId" name="projectId">
+<div class="expert-body">
+	<h4 class="m-crumb">当前位置：<span>项目管理 - 结项申请</span></h4>
+	<div class="manage_detail">
+		<div class="row clearfix">
+	 		<div class="page-header">项目基本信息</div>
+			<div class="table">
+			    <ul>
+			        <li>
+			            <div class="one">项目名称：</div>
+			            <div class="two" id="name"></div>
+			            <div class="three" >负责人：</div>
+			            <div class="four" id="manager"></div>
+			            <div class="five">客户名称：</div>
+			            <div class="six" id="customerName" ></div>
+			        </li>
+			        <li>
+			            <div class="one">开始时间：</div>
+			            <div class="two" id="startDate"></div>
+			            <div class="three">结束时间：</div>
+			            <div class="four" id="endDate"></div>
+			            <div class="five">状态：</div>
+			            <div class="six" id="status"></div>
+			        </li>
+			    </ul>
+			</div>
+		</div>
+
+		<div class="row clearfix">
+		<div class="page-header">成果交付物</div>
+				<div class="table-box">
+					<table class="table table-bordered" id="fileTable">
+						<thead>
+							<tr>
+								<td>文件名</td>
+								<td>提交人</td>
+								<td>提交时间</td>
+								<td>状态</td>
+							</tr>
+						</thead>
+						<tbody>
+						</tbody>
+					</table>
+				</div>
+		</div>
+
+	<div class="row clearfix">
+	<div class="page-header">回款情况</div>		
+		<div class="table">
+		    <ul>
+		        <li>
+		            <div class="one">项目总金额：</div>
+		            <div class="two" id="proTotalPrice"></div>
+		            <div class="three" >已回款金额：</div>
+		            <div class="four" id="salesBackPrice"></div>
+		            <div class="five">未回款金额：</div>
+		            <div class="six" id="remainderPrice" ></div>
+		        </li>
+		    </ul>
+		</div>
+	</div>
+
+
+
+
+<!-- 模型第二页 -->
+
+	<div class="row clearfix">
+	<div class="page-header">项目工作总结</div>
+		<div class="table-box">
+		<form id="memberInfoForm">
+			<!-- 项目summaryId -->
+			<input type="hidden" id="summaryId" name="summaryId">
+				<table class="table table-bordered"> 
+					<thead>
+			   			<tr> 
+  							<td>姓名:</td> 
+  							<td>任务完成进度</td> 
+ 							<td>任务完成质量</td> 
+ 							<td>总体表现</td> 
+						 </tr>
+  					</thead>
+  					<tbody>
+  					<!-- 李四，优秀，优秀，优秀 -->
+  					</tbody> 
+			 	</table> 
+			</form>
+			<form id="summaryForm">
+			<input name="projectId" type="hidden">
+				<table class="table table-bordered">
+					<tr>
+						<td>客户评价:</td>
+						<td><textarea name="customerEvaluate" required style="resize:none;width:800px" class="form-control" readOnly></textarea></td>
+					</tr>
+					<tr>
+						<td>项目总结:</td>
+						<td><textarea name="content" required style="resize:none;width:800px" class="form-control" readOnly></textarea></td>
+					</tr>
+					<tr>
+						<td>文档上传</td>
+						<td>
+						</td>
+					</tr>
+				</table>
+			</form>
+			</div>
+		</div>
+<!--
+                <div class="form_item">
+                    <div class="text_label">意见描述：</div>
+                    <div class="form_right">
+                        <textarea class="form-control" rows="2" id="textarea_reason"></textarea>
+                    </div>
+                </div>
+                <div class="form_item">
+                    <button type="button" class="btn btn-success btn-firsts" id="preApproveBtn">通过</button>
+                    <button type="button" class="btn btn-primary" id="preRejectBtn">驳回</button>
+                </div>
+                <div id="knotApproveAlertModal" class="modal fade" tabindex="-1" role="dialog">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                <h4 class="modal-title">提示</h4>
+                            </div>
+                            <div class="modal-body">
+                                <i class="del-warn"></i>提交审批信息。
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-primary" data-dismiss="modal" id="doApproveBtn">确定</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+-->
+</div>
+</div>

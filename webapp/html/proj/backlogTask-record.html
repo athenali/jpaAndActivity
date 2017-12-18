@@ -1,0 +1,170 @@
+<script src="../../js/inner/backlogTask-record.js"></script>
+<link rel="stylesheet" href="../../css/find.css">
+<!-- ************ID用于刷新页面***********************-->
+<input type="hidden" id="projectId" name="projectId">
+<div class="expert-body">
+	<h4 class="m-crumb">当前位置：<span>我的代办-待办任务-结项确认</span></h4>
+	<div class="manage_detail">
+		<div class="row clearfix">
+	 		<div class="page-header">项目基本信息</div>
+	 		
+			<div class="table">
+			    <ul>
+			        <li>
+			            <div class="one">项目名称：</div>
+			            <div class="two" id="name"></div>
+			            <div class="three" >负责人：</div>
+			            <div class="four" id="manager"></div>
+			            <div class="five">客户名称：</div>
+			            <div class="six" id="customerName" ></div>
+			        </li>
+			        <li>
+			            <div class="one">开始时间：</div>
+			            <div class="two" id="startDate"></div>
+			            <div class="three">结束时间：</div>
+			            <div class="four" id="endDate"></div>
+			            <div class="five">状态：</div>
+			            <div class="six" id="status"></div>
+			        </li>
+			    </ul>
+			</div>
+		</div>
+
+		<div class="row clearfix">
+		<div class="page-header">成果交付物</div> 
+		<div id="tabs">
+		  <ul>
+		    <li><a href="#tabs-5">调研信息</a></li>
+		    <li><a href="#tabs-1">需求文档</a></li>
+		    <li><a href="#tabs-2">投标文档</a></li>
+		    <li><a href="#tabs-3">合同评审文档</a></li>
+		    <li><a href="#tabs-4">成果文档</a></li>
+		  </ul>
+		  <div class="table-box">
+		  <div id="tabs-1">
+		    <table class="table table-bordered" id="demandInfoTable">
+		    	<thead>
+					<tr>
+						<th>文件名</th>
+						<th>提交人</th>
+						<th>提交时间</th>
+						<th>状态</th>
+					</tr>
+				</thead>
+				<tbody></tbody>
+			</table>
+		  </div>
+		  <div id="tabs-2">
+		    <table class="table table-bordered" id="bidFileTable">
+		    	<thead>
+					<tr>
+						<th>文件名</th>
+						<th>提交人</th>
+						<th>提交时间</th>
+						<th>状态</th>
+					</tr>
+				</thead>
+				<tbody></tbody>
+			</table>
+		  </div>
+		  <div id="tabs-3">
+		  	<table class="table table-bordered" id="contractFileTable">
+		    	<thead>
+					<tr>
+						<th>文件名</th>
+						<th>提交人</th>
+						<th>提交时间</th>
+						<th>状态</th>
+					</tr>
+				</thead>
+				<tbody></tbody>
+			</table>
+		  </div>
+		  <div id="tabs-4">
+		  	<table class="table table-bordered" id="taskFileTable">
+		    	<thead>
+					<tr>
+						<th>文件名</th>
+						<th>提交人</th>
+						<th>提交时间</th>
+						<th>状态</th>
+					</tr>
+				</thead>
+				<tbody></tbody>
+			</table>
+		  </div>
+		   <div id="tabs-5">
+		    <table class="table table-bordered" id="surveyInfoTable">
+		    	<thead>
+					<tr>
+						<th>姓名</th>
+						<th>完成时间</th>
+						<th>状态</th>
+						<th>附件</th>
+						<th>描述</th>
+						<th>对接人姓名</th>
+						<th>对接人电话</th>
+						<th>对接人部门</th>
+						<th>是否超时</th>
+					</tr>
+				</thead>
+				<tbody></tbody>
+			</table>
+		  </div>
+	</div>
+		
+	<div class="row clearfix">
+	<div class="page-header">回款情况</div>		
+		<div class="table">
+		    <ul>
+		        <li>
+		            <div class="one">项目总金额：</div>
+		            <div class="two" id="proTotalPrice"></div>
+		            <div class="three" >已回款金额：</div>
+		            <div class="four" id="salesBackPrice"></div>
+		            <div class="five">未回款金额：</div>
+		            <div class="six" id="remainderPrice" ></div>
+		        </li>
+		    </ul>
+		</div>
+	</div>
+</div>
+
+
+
+<!-- 模型第二页 -->
+
+	<div class="row clearfix">
+	<div class="page-header">项目工作总结</div>
+		<div class="table-box">
+			<form id="summaryForm">
+			<input name="projectId" type="hidden">
+				<table class="table table-bordered">
+					<tr>
+						<td>客户评价:</td>
+						<td><textarea readonly name="customerEvaluate" required style="resize:none;width:800px" class="form-control"></textarea></td>
+					</tr>
+					<tr>
+						<td>项目总结:</td>
+						<td><textarea readonly name="content" required style="resize:none;width:800px" class="form-control"></textarea></td>
+					</tr>
+					<tr>
+						<td>文档列表</td>
+						<td><div id="knotFiles"></div></td>
+					</tr>
+				</table>
+			</form>
+		</div>
+		</div>
+
+	<!--  返回和提交   按钮 -->
+	<div class="container-fluid">
+		<div class="col-md-12 text-center">
+			 <button type="button" class="btn btn-success btn-default" id="approvalBtn">确认</button>
+			 <button type="button" class="btn  btn-primary  btn-default"  id="returnBtn">返回</button>
+		</div>
+	</div>
+</div>
+</div>
+</div>
+

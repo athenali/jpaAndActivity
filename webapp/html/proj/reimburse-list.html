@@ -1,0 +1,384 @@
+<script src="../../js/inner/reimburse.js"></script>
+<div class="expert-body">
+	<h3 class="m-crumb">
+		当前位置：<span>人事管理 - 报销申请</span>
+	</h3>
+	<div class="box">
+		<div class="opera-box">
+			<span class="tit">报销单号：</span> <input type="text"
+				class="form-control" id="reimNum" /> <span class="tit">项目名称：</span>
+			<input type="text" class="form-control" id="projectName" /> <span
+				class="tit">状态：</span> <select class="form-control" name="status"
+				id="status" required>
+				<option value="">全部</option>
+				<option value="draft">草稿</option>
+				<option value="inProgress">审核中</option>
+				<option value="withdraw">撤退</option>
+				<option value="finish">审核完成</option>
+			</select>
+		</div>
+		<div class="opera-box">
+			<div class="pull-right">
+				<a class="btn btn-default btn-query" id="searchBtn"><i
+					class="icon fa fa-search"></i> 查 询</a> <a
+					class="btn btn-default btn-add" data-toggle="modal"
+					data-target="#addModal" id="addLink"><i class="icon fa fa-plus"></i>
+					新 增</a> <a class="btn btn-default btn-del" id="delSelect"><i
+					class="icon fa fa-trash-o"></i> 删 除</a>
+			</div>
+		</div>
+		<div class="table-box">
+			<table class="table table-bordered" id="table">
+				<thead>
+					<tr>
+						<th><input type="checkbox" id="selectAll" /></th>
+						<th>报销单号</th>
+						<th>费用类型</th>
+						<th>项目名称</th>
+						<th>报销金额</th>
+						<th>开始时间</th>
+						<th>结束时间</th>
+						<th>创建时间</th>
+						<th>报销状态</th>
+						<th>操作</th>
+					</tr>
+				</thead>
+				<tbody>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<div id="delModal" class="modal fade del-modal" tabindex="-1"
+		role="dialog">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title">删除信息</h4>
+				</div>
+				<div class="modal-body">
+					<i class="del-warn"></i>确定删除吗？删除后将无法恢复！
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" id="delBtn">确定</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal">
+						<i class="icon fa fa-times"></i> 取消
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="alertModal" class="modal fade del-modal" tabindex="-1"
+		role="dialog">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title">提示</h4>
+				</div>
+				<div class="modal-body">
+					<i class="del-warn"></i>请选择希望删除的数据。
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" data-dismiss="modal">确定</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="errorModal" class="modal fade del-modal" tabindex="-1"
+		role="dialog">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title">提示</h4>
+				</div>
+				<div class="modal-body">
+					<i class="del-warn" style="margin-left: 23px; margin-top: -52px;"></i>
+					<table>
+						<tbody id="tbody">
+
+						</tbody>
+					</table>
+
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" data-dismiss="modal">确定</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="withdrawModal" class="modal fade withdraw-modal" tabindex="-1"
+		role="dialog">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title">提示信息</h4>
+				</div>
+				<div class="modal-body">
+					<i class="del-warn"></i>撤销报销申请。
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" id="withdrawBtn">确定</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal">
+						<i class="icon fa fa-times"></i> 取消
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="addModal" class="modal fade add-modal" tabindex="-1"
+		data-backdrop="static" data-keyboard="false" role="dialog">
+		<div class="modal-dialog" role="document" style="width: 800px">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						id="closeBtn" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title">基本信息</h4>
+				</div>
+				<div class="modal-body">
+					<form id="addForm_base">
+						<div class="form-box">
+							<span class="tit"><i
+								class="icon fa fa-asterisk red smaller-70"></i>报销分类：</span> <select
+								class="form-control" style="width: 240px;" name="claimType"
+								id="claimType" required>
+								<option value="recal">项目内报销</option>
+							</select> <select class="form-control" style="width: 240px;" name="projId"
+								id="addProjId" required>
+							</select>
+						</div>
+						<div class="form-box">
+							<!-- 						feeType -> type -->
+							<span class="tit"><i
+								class="icon fa fa-asterisk red smaller-70"></i>费用类型：</span> <select
+								class="form-control" style="width: 484px;" name="type"
+								id="addBasicType" required>
+							</select>
+						</div>
+						<div class="form-box">
+							<span class="tit"><i
+								class="icon fa fa-asterisk red smaller-70"></i>出差时间：</span>
+							<!-- 						startDate -> startTime -->
+							<input type="text" class="form-control" id="addStartTime"
+								name="startTime" placeholder="请输入开始时间" required maxlength="50"
+								style="width: auto; display: inline-block;" /> 至
+							<!-- 						endDate -> endTime -->
+							<input type="text" class="form-control" name="endTime" id="addEndTime"
+								placeholder="请输入结束时间" required maxlength="50"
+								style="width: auto; display: inline-block;" /> 共
+							<!-- 						day -> totalDays -->
+							<input type="text" class="form-control" name="totalDays"
+								placeholder="请输入天数" required maxlength="50"
+								style="width: 125px; display: inline-block;"
+								onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)"
+								onblur="this.v();" /> 天
+						</div>
+						<div class="form-box">
+							<span class="tit"><i
+								class="icon fa fa-asterisk red smaller-70"></i>报销事由：</span>
+							<textarea rows="2" class="form-control" name="reason" required
+								placeholder="请输入报销事由" maxlength="200"
+								style="margin-left: 0%; width: 484px"></textarea>
+						</div>
+						<span id="addErrorMessage" style="color: red;"></span>
+					</form>
+					<h4 class="modal-title">
+						费用明细
+						<button type="button" class="btn btn-success"
+							onclick="window.addDetail()" style="float: right;"
+							aria-label="Right Align" id="addDetail">
+							<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>添加明细
+						</button>
+					</h4>
+					<hr>
+					<form class="cost_detal" id="addDetailOne">
+						<div class="form-box">
+							<!-- 					feeType -> type -->
+							<span class="tit"><i
+								class="icon fa fa-asterisk red smaller-70"></i>费用类型：</span> <select
+								class="form-control" style="width: 98px;" name="type"
+								id="addCostType" required>
+							</select> <span class="tit" style="width: 74px;"><i
+								class="icon fa fa-asterisk red smaller-70"></i>发生时间：</span>
+							<!-- 					startDate -> startTime -->
+							<input type="text" class="form-control" id="detailStartTime"
+								name="startTime" placeholder="请输入开始时间" required maxlength="50"
+								style="width: 125px; display: inline-block;" /> 至
+							<!-- 					endDate -> endTime -->
+							<input type="text" class="form-control" name="endTime" id="detailEndTime"
+								placeholder="请输入结束时间" required maxlength="50"
+								style="width: auto; display: inline-block;" /> <br> <br>
+							<span class="tit"><i
+								class="icon fa fa-asterisk red smaller-70"></i>费用金额：</span>
+							<!-- 					money -> costAmount -->
+							<input type="text" class="form-control jine" name="costAmount"
+								onblur="computeMoney()" onkeyup="onlyNumber(this)"
+								onblur="onlyNumber(this)" onblur="this.v();"
+								style="width: 485px;" required /> <br> <br> <span
+								class="tit"><i class="icon fa fa-asterisk red smaller-70"></i>费用说明：</span>
+							<!-- 					reason -> descn -->
+							<textarea rows="2" class="form-control" name="descn" required
+								placeholder="请输入费用说明" maxlength="200"
+								style="margin-left: 0%; width: 485px;"></textarea>
+							<br> <br>
+							<!--文件上传需要添加 -->
+							<div class="form-box">
+								<span class="tit">上传附件：</span> <a href="javascript:;"
+									class="a-upload"><input id="File" type="file" name="file"
+									multiple onchange="oneupload()" />点击上传文件</a>
+							</div>
+							<div id="FileText"></div>
+							<span id="addErrorMessage" style="color: red;"></span>
+						</div>
+					</form>
+					<div id="formpart"></div>
+					<form id="addForm_count">
+						<br> <br>
+						<div class="form-box">
+							<!-- 					totalMoney -> totalPrice -->
+							总金额：<input type="text" name="totalPrice" readonly="readonly"
+								id="totalMoney"
+								style="border-style: none; width: 70px; text-align: center;"
+								value="0.00">元
+						</div>
+						<span id="addErrorMessage" style="color: red;"></span>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" id="addSaveBtn">
+						<i class="icon fa fa-save"></i> 保存
+					</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal"
+						id="close">
+						<i class="icon fa fa-times"></i> 关闭
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div id="startModal" class="modal fade start-modal" tabindex="-1"
+		role="dialog">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title">提示信息</h4>
+				</div>
+				<div class="modal-body">
+					<i class="del-warn"></i>提交休假申请。
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" id="startBtn">确定</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal">
+						<i class="icon fa fa-times"></i> 取消
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="editModal" class="modal fade edit-modal" tabindex="-1"
+		data-backdrop="static" data-keyboard="false" role="dialog">
+		<div class="modal-dialog" role="document" style="width: 800px">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						id="editcloseBtn" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title">基本信息</h4>
+				</div>
+				<div class="modal-body">
+					<form id="editForm" method="post" enctype="multipart/form-data">
+						<div class="form-box">
+							<span class="tit"><i
+								class="icon fa fa-asterisk red smaller-70"></i>报销分类：</span> <select
+								class="form-control" style="width: 240px;" name="claimType"
+								id="editClaimType" required>
+								<option value="recal">项目内报销</option>
+							</select> <select class="form-control" style="width: 240px;" name="projId"
+								id="editProjId" required>
+							</select>
+						</div>
+						<div class="form-box">
+							<span class="tit"><i
+								class="icon fa fa-asterisk red smaller-70"></i>费用类型：</span> <select
+								class="form-control" style="width: 484px;" name="feeType"
+								id="editBasicType" required>
+							</select>
+						</div>
+						<div class="form-box">
+							<span class="tit"><i
+								class="icon fa fa-asterisk red smaller-70"></i>出差时间：</span> <input
+								type="text" class="form-control" name="startDate"
+								id="editStartTime" placeholder="请输入开始时间" required maxlength="50"
+								value="" style="width: auto; display: inline-block;" /> 至 <input
+								type="text" class="form-control" name="endDate"
+								id="editEndTime" placeholder="请输入结束时间" required maxlength="50"
+								style="width: auto; display: inline-block;" /> 共 <input
+								type="text" class="form-control" name="day" placeholder="请输入天数"
+								id="totalDays" required maxlength="50"
+								style="width: 126px; display: inline-block;"
+								onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)"
+								onblur="this.v();" /> 天
+						</div>
+						<div class="form-box" id="reimReason">
+							<span class="tit"><i
+								class="icon fa fa-asterisk red smaller-70"></i>报销事由：</span>
+							<textarea rows="2" class="form-control" name="reason"
+								id="reimexplain" placeholder="请输入报销事由" required maxlength="200"
+								style="margin-left: 0%; width: 484px">
+						</textarea>
+						</div>
+						<h4 class="modal-title">
+							费用明细
+							<button type="button" class="btn btn-success"
+								onclick="window.addDetail2()" style="float: right;"
+								aria-label="Right Align">
+								<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>添加明细
+							</button>
+						</h4>
+						<hr id="line">
+
+						<div class="form-box" id="editAddCostDetail"></div>
+						<div class="form-box">
+							总金额：<input type="text" name="editTotalMoney" readonly="readonly"
+								id="editTotalMoney"
+								style="border-style: none; width: 70px; text-align: center;"
+								value="0.00">元
+						</div>
+						<span id="addErrorMessage" style="color: red;"></span>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" id="editSaveBtn">
+						<i class="icon fa fa-save"></i> 保存
+					</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal"
+						id="editclose">
+						<i class="icon fa fa-times"></i> 关闭
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

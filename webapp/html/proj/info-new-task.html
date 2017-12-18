@@ -1,0 +1,59 @@
+<script src="../../js/inner/info-new-task.js"></script>
+<!-- <script src="../../js/multiple-select.js"></script> -->
+<!-- <link rel="stylesheet" href="../../css/multiple-select.css"> -->
+</head>
+<body class="expert-body">
+	<div>
+		<h3 class="m-crumb">
+			当前位置：<span>进度管理-项目列表</span>
+		</h3>
+		<div class="box">
+			<div class="opera-box">
+				<span class="tit">项目名称：</span>
+					<input type="text" class="form-control" id="name" /> 
+				<span class="tit">开始时间：</span>
+					<input type="text" class="form-control datepicker" id="startDate"/>
+				<span class="tit">结束时间：</span>
+					<input type="text" class="form-control datepicker" id="endDate"/>
+				<span class="tit">项目状态：</span> 
+					<select id="status" class="form-control">
+						<option value="">请选择</option>
+						<option>合同签订</option>
+						<option value="调研">出差调研</option>
+						<option value="初稿">编写初稿</option>
+						<option value="终稿">编写终稿</option>
+						<option value="项">项目结束</option>
+					</select>
+			</div>
+			<div class="opera-box">
+				<span class="tit">客户名称：</span> 
+					<input type="text" class="form-control" id="customerName" /> 
+			</div>
+			<div class="opera-box">
+				<div class="pull-right">
+					<a class="btn btn-default btn-query" id="searchBtn"><i class="icon fa fa-search"></i> 查 询</a>
+				</div>
+			</div>
+
+			<div class="table-box">
+				<table class="table table-bordered" id="table">
+					<thead>
+						<tr>
+							<th>编号</th>
+							<th>项目名称</th>
+							<th>客户名称</th>
+							<th>项目开始时间</th>
+							<th>项目截止时间</th>
+							<th style="width: 140px;">项目状态</th>
+							<th>创建时间</th>
+							<th>负责/参与</th>
+							<th>操作</th>
+						</tr>
+					</thead>
+					<tbody>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</body>

@@ -1,0 +1,241 @@
+		<h3 class="m-crumb">
+			当前位置：<span>待办审批 - 待办审批</span>
+		</h3>
+		<div class="box">
+			<div class="opera-box">
+				<!--
+				<span class="tit">公司名称：</span>
+				<input type="text" class="form-control" id="name" />
+				<span class="tit">公司类别：</span>
+				<input type="text" class="form-control" id="type" />
+				<a class="btn btn-default btn-query" id="searchBtn"><i class="icon fa fa-search"></i> 查 询</a>
+				-->
+				&nbsp;
+				<div class="pull-right">
+					<!--
+					<a class="btn btn-default btn-add" href="leave-input.html">新增</a>
+					<a class="btn btn-default btn-del ml-10" id="delSelect"><i class="icon fa fa-trash-o"></i> 删 除</a>
+					-->
+				</div>
+			</div>
+			<div class="table-box">
+				<table class="table table-bordered" id="table">
+					<thead>
+						<tr>
+							<th><input type="checkbox" id="selectAll" /></th>
+							<th>类型</th>
+							<th>名称</th>
+							<th>项目名称</th>
+							<th>项目负责人</th>
+							<th>申请人</th>
+							<th>创建时间</th>
+							<th>状态</th>
+							<th>操作</th>
+						</tr>
+					</thead>
+					<tbody>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+	<div id="delModal" class="modal fade del-modal" tabindex="-1"
+		role="dialog">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title">删除信息</h4>
+				</div>
+				<div class="modal-body">
+					<i class="del-warn"></i>确定删除吗？删除后将无法恢复！
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" id="delBtn">确定</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal"><i class="icon fa fa-times"></i> 取消</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="startModal" class="modal fade start-modal" tabindex="-1"
+		role="dialog">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title">提交信息</h4>
+				</div>
+				<div class="modal-body">
+					<i class="del-warn"></i>提交休假申请。
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" id="startBtn">确定</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal"><i class="icon fa fa-times"></i> 取消</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="alertModal" class="modal fade del-modal" tabindex="-1"
+		role="dialog">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title">提示</h4>
+				</div>
+				<div class="modal-body">
+					<i class="del-warn"></i>请选择希望删除的数据。
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" data-dismiss="modal">确定</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="addModal" class="modal fade add-modal" tabindex="-1"
+		role="dialog">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title">新增信息</h4>
+				</div>
+				<div class="modal-body">
+					<form id="addForm">
+						<div class="form-box">
+							<span class="tit">公司名称：</span> <input type="text"
+								class="form-control" name="name" placeholder="请输入公司名称"
+								required maxlength="50" />
+						</div>
+						<div class="form-box">
+							<span class="tit">地址：</span> 
+							<input type="text"
+								class="form-control" name="address" placeholder="请输入公司地址"
+								required maxlength="200" />
+						</div>
+						<div class="form-box">
+							<span class="tit">公司类型：</span> 
+							<select name="type" required>
+								<option value="合资">合资</option>
+								<option value="外资">外资</option>
+								<option value="个体">个体</option>
+							</select>
+						</div>
+						<div class="form-box">
+							<span class="tit">企业规模：</span> 
+							<input type="text" 
+							class="form-control" name="scale" placeholder="请输入企业规模"
+							required maxlength="50"/>
+						</div>
+						<div class="form-box">
+							<span class="tit">装备及业务：</span>
+							<textarea rows="2" class="form-control" name="business" placeholder="请输入装备及业务"
+							required maxlength="200"></textarea>
+						</div>
+						<div class="form-box">
+							<span class="tit">联系人：</span> 
+							<input type="text" class="form-control" name="contact" placeholder="请输入联系人"
+							required maxlength="50"/>
+						</div>
+						<div class="form-box">
+							<span class="tit">电话：</span>
+							 <input type="text" class="form-control" name="telephone" placeholder="请输入电话"
+							 required maxlength="50"/>
+						</div>
+						<div class="form-box">
+							<span class="tit">备注：</span>
+							<textarea rows="2" class="form-control" name="descn" placeholder="请输入备注"
+							maxlength="200" ></textarea>
+						</div>
+						<span id="addErrorMessage" style="color:red"></span>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" id="addSaveBtn"><i class="icon fa fa-save"></i> 保存</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal"><i class="icon fa fa-times"></i> 取消</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="editModal" class="modal fade edit-modal" tabindex="-1"
+		role="dialog">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title">编辑信息</h4>
+				</div>
+				<div class="modal-body">
+					<form id="editForm">
+						<input type="hidden" name="id">
+						<div class="form-box">
+							<span class="tit">公司名称：</span> <input type="text"
+								class="form-control" name="name" placeholder="请输入公司名称"
+								required maxlength="50" />
+						</div>
+						<div class="form-box">
+							<span class="tit">地址：</span> 
+							<input type="text"
+								class="form-control" name="address" placeholder="请输入公司地址"
+								required maxlength="200" />
+						</div>
+						<div class="form-box">
+							<span class="tit">公司类型：</span> 
+							<select name="type" required>
+								<option value="合资">合资</option>
+								<option value="外资">外资</option>
+								<option value="个体">个体</option>
+							</select>
+						</div>
+						<div class="form-box">
+							<span class="tit">企业规模：</span> 
+							<input type="text" 
+							class="form-control" name="scale" placeholder="请输入企业规模"
+							required maxlength="50"/>
+						</div>
+						<div class="form-box">
+							<span class="tit">装备及业务：</span>
+							<textarea rows="2" class="form-control" name="business" placeholder="请输入装备及业务"
+							required maxlength="200"></textarea>
+						</div>
+						<div class="form-box">
+							<span class="tit">联系人：</span> 
+							<input type="text" class="form-control" name="contact" placeholder="请输入联系人"
+							required maxlength="50"/>
+						</div>
+						<div class="form-box">
+							<span class="tit">电话：</span>
+							 <input type="text" class="form-control" name="telephone" placeholder="请输入电话"
+							 required maxlength="50"/>
+						</div>
+						<div class="form-box">
+							<span class="tit">备注：</span>
+							<textarea rows="2" class="form-control" name="descn" placeholder="请输入备注"
+							maxlength="200" ></textarea>
+						</div>
+						<span id="editErrorMessage" style="color:red"></span>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" id="editSaveBtn"><i class="icon fa fa-save"></i> 保存</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal"><i class="icon fa fa-times"></i> 取消</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="../../js/inner/task-personal.js"></script>

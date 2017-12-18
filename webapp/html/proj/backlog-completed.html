@@ -1,0 +1,45 @@
+<script src="../../js/inner/backlog-completed.js"></script>
+<div class="expert-body">
+		<h3 class="m-crumb">
+			当前位置：<span>待办审批 - 已办审批</span>
+		</h3>
+		<div class="box">
+
+			<ul class="nav nav-tabs" role="tablist" style="margin-bottom:20px;">
+				<li role="presentation" class="">
+					<a href="../proj/backlog-list.html">待办审批</a>
+				</li>
+				<li role="presentation" class="active">
+					<a href="../proj/backlog-completed.html">已办审批</a>
+				</li>
+			</ul>
+
+			<div class="opera-box">
+				<span class="tit">项目名称：</span> <input type="text" class="form-control" id="projectName" /> 
+				<span class="tit">类型：</span> <input type="text" class="form-control" id="type" /> 
+				<!-- <span class="tit">审批状态：</span> <input type="text" class="form-control" id="status" />  -->
+				<a class="btn btn-default btn-query" id="searchBtn"><i class="icon fa fa-search"></i> 查 询</a>
+			</div>
+			<div class="table-box">
+				<table class="table table-bordered" id="table">
+					<thead>
+						<tr>
+							<th><input type="checkbox" id="selectAll" /></th> 
+							<th>序号</th>
+							<th>类型</th>
+							<th>名称</th>
+							<th>项目名称</th>
+							<th>项目负责人</th>
+							<th>申请人</th>
+							<th>创建时间</th>
+						<!-- 	<th>审批状态</th> -->
+							<th>操作</th>
+						</tr>
+					</thead>
+					<tbody>
+					</tbody>
+				</table>
+			</div>
+
+		</div>
+	</div>	

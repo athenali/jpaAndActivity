@@ -1,0 +1,330 @@
+<script src="../../js/inner/expert.js"></script>
+<div class="expert-body">
+		<h3 class="m-crumb">
+			当前位置：<span>客户管理-专家管理</span>
+		</h3>
+		<div class="box">
+			<div class="opera-box">
+				<span class="tit">姓名：</span>
+				 <input type="text" class="form-control" id="name" />
+				<span class="tit">职称：</span>
+				 <input type="text" class="form-control" id="jobTitle" />
+				<span class="tit">单位名称：</span>
+				<input type="text" class="form-control" id="companyName" />
+			</div>
+			<div class="opera-box">
+				<div class="pull-right">
+					<a class="btn btn-default btn-query" id="searchBtn"><i class="icon fa fa-search"></i> 查 询</a>
+					<a class="btn btn-default btn-add" data-toggle="modal" data-target="#addModal" id="addLink"><i class="icon fa fa-plus"></i> 新 增</a> 
+					<a class="btn btn-default btn-del" id="delSelect"><i class="icon fa fa-trash-o"></i> 删 除</a>
+				</div>
+			</div>
+			<div class="table-box">
+				<table class="table table-bordered" id="table">
+					<thead>
+						<tr>
+							<th><input type="checkbox" id="selectAll"/></th>
+							<th>姓名</th>
+							<th>性别</th>
+							<th>出生日期</th>
+							<th>单位名称</th>
+							<th>职称</th>
+							<th>联系电话</th>
+							<th>邮箱</th>
+							<th>操作</th>
+						</tr>
+					</thead>
+					<tbody>
+					</tbody>
+				</table>
+			</div>
+	</div>
+</div>
+	<div id="delModal" class="modal fade del-modal" tabindex="-1" role="dialog">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title">删除信息</h4>
+				</div>
+				<div class="modal-body">
+					<i class="del-warn"></i>确定删除吗？删除后将无法恢复！
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" id="delBtn">确定</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal"><i class="icon fa fa-times"></i> 取消</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="alertModal" class="modal fade del-modal" tabindex="-1" role="dialog">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title">提示</h4>
+				</div>
+				<div class="modal-body">
+					<i class="del-warn"></i>请选择希望删除的数据。
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" data-dismiss="modal">确定</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="addModal" class="modal fade add-modal" tabindex="-1" role="dialog">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content" style="width:600px;">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title">新增信息</h4>
+				</div>
+				<div class="modal-body">
+					<form id="addForm">
+						<div class="form-box">
+							<span class="tit"><i class="icon fa fa-asterisk red smaller-70"></i>姓名：</span> 
+							<input type="text" class="form-control" name="name" placeholder="请输入姓名"
+								required maxlength="50" />
+						</div>
+						<div class="form-box">
+							<span class="tit"><i class="icon fa fa-asterisk red smaller-70"></i>性别：</span> 
+							<select name="gender" required class="form-control">
+								<option value="男">男</option>
+								<option value="女">女</option>
+							</select>
+						</div>
+						<div class="form-box">
+						<span class="tit">出生时间：</span>
+							<input type="text" class="form-control datepicker" name="birthday" placeholder="请输入出生时间"  maxlength="50"/>
+						</div>
+						<div class="form-box">
+							<span class="tit"><i class="icon fa fa-asterisk red smaller-70"></i>单位名称：</span>
+							<input type="text" class="form-control" name="companyName" placeholder="请输入单位名称" 
+							    maxlength="200" required />
+						</div>
+						<div class="form-box">
+							<span class="tit">职称：</span>
+							<select class="form-control" name="jobTitle"></select>
+						</div>
+						<div class="form-box">
+							<span class="tit"><i class="icon fa fa-asterisk red smaller-70"></i>电话：</span>
+							<input type="text" class="form-control isTel" name="telephone" placeholder="请输入电话" 
+								required maxlength="11"/>
+						</div>
+						<div class="form-box">
+							<span class="tit">邮箱：</span>
+							<input type="text" class="isEmail form-control" maxlength="20" name="email" placeholder="请输入邮箱"/>
+						</div>
+						<div class="form-box">
+							<span class="tit">身份证号：</span>
+							<input type="text" class="form-control isIdCardNo" maxlength="18" name="idNumber" placeholder="请输入身份证号"/>
+						</div>
+						<div class="form-box">
+							<span class="tit">银行卡号：</span>
+							<input type="text" class="form-control isDigits" name="bankAccount" placeholder="请输入银行卡号"
+							 	 maxlength="50"  />
+						</div>
+						<div class="form-box">
+							<span class="tit">开户行：</span>
+							<input type="text" class="form-control" name="bankDeposit" placeholder="请输入开户行" maxlength="50"  />
+						</div>
+						
+						<div class="form-box">
+							<span class="tit">单位地址：</span>
+							<input type="text" class="form-control" name="customerAddress" placeholder="请输入单位地址" />
+						</div>
+						<div class="form-box">
+							<span class="tit">研究领域：</span>
+							<textarea rows="2" class="form-control" placeholder="请输入研究领域" maxlength="200" name="researchField"></textarea>
+						</div>
+						<div class="form-box">
+							<span class="tit">主要学术成果：</span>
+							<textarea rows="2" class="form-control" placeholder="请输入主要学术成果" maxlength="200" name="achievement"></textarea>
+						</div>
+						<div class="form-box">
+							<span class="tit">备注：</span>
+							<textarea rows="2" class="form-control" name="descn" placeholder="请输入备注" maxlength="200"></textarea>
+						</div>
+						<span id="addErrorMessage" style="color:red"></span>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" id="addSaveBtn"><i class="icon fa fa-save"></i> 保存</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal"><i class="icon fa fa-times"></i> 取消</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div id="editModal" class="modal fade edit-modal" tabindex="-1" role="dialog">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content" style="width:600px;">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title">编辑信息</h4>
+				</div>
+				<div class="modal-body">
+					<form id="editForm">
+						<!-- *******用于修改的id********* -->
+						<input type="hidden" name="id">
+						<div class="form-box">
+							<span class="tit"><i class="icon fa fa-asterisk red smaller-70"></i>姓名：</span>
+							<input type="text" class="form-control" name="name" placeholder="请输入姓名"
+								required maxlength="50" />
+						</div>
+						<div class="form-box">
+							<span class="tit"><i class="icon fa fa-asterisk red smaller-70"></i>性别：</span>
+							<select name="gender" required class="form-control">
+								<option value="男">男</option>
+								<option value="女">女</option>
+							</select>
+						</div>
+						<div class="form-box">
+						<span class="tit">出生时间：</span>
+							<input type="text" class="form-control datepicker" name="birthday" placeholder="请输入出生时间"  maxlength="50"/>
+						</div>
+						<div class="form-box">
+							<span class="tit"><i class="icon fa fa-asterisk red smaller-70"></i>单位名称：</span>
+							<input type="text" class="form-control" name="companyName" placeholder="请输入单位名称" maxlength="200" required />
+						</div>
+						<div class="form-box">
+							<span class="tit">职称：</span>
+							<select class="form-control" name="jobTitle" ></select>
+						</div>
+						<div class="form-box">
+							<span class="tit"><i class="icon fa fa-asterisk red smaller-70"></i>电话：</span>
+							<input type="text" class="form-control isTel" name="telephone" placeholder="请输入电话"
+								required maxlength="11" />
+						</div>
+						<div class="form-box">
+							<span class="tit">邮箱：</span>
+							<input type="text" class="isEmail form-control" maxlength="20" name="email" placeholder="请输入邮箱"/>
+						</div>
+						<div class="form-box">
+							<span class="tit">身份证号：</span>
+							<input type="text" class="form-control isIdCardNo" maxlength="18" name="idNumber" placeholder="请输入身份证号"/>
+						</div>
+						<div class="form-box">
+							<span class="tit">银行卡号：</span>
+							<input type="text" class="form-control isDigits" name="bankAccount" placeholder="请输入银行卡号"
+							 	 maxlength="50"  />
+						</div>
+						<div class="form-box">
+							<span class="tit">开户行：</span>
+							<input type="text" class="form-control" name="bankDeposit" placeholder="请输入开户行" maxlength="50"  />
+						</div>
+						
+						<div class="form-box">
+							<span class="tit">单位地址：</span>
+							<input type="text" class="form-control" name="customerAddress" placeholder="请输入单位地址"/>
+						</div>
+						
+						<div class="form-box">
+							<span class="tit">研究领域：</span>
+							<textarea rows="2" class="form-control" placeholder="请输入研究领域" name="researchField"
+								maxlength="200"></textarea>
+						</div>
+						<div class="form-box">
+							<span class="tit">主要学术成果：</span>
+							<textarea rows="2" class="form-control" placeholder="请输入主要学术成果" name="achievement" maxlength="200"></textarea>
+						</div>
+						<div class="form-box">
+							<span class="tit">备注：</span>
+							<textarea rows="2" class="form-control" name="descn" placeholder="请输入备注" maxlength="200" ></textarea>
+						</div>
+						<span id="editErrorMessage" style="color:red"></span>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" id="editSaveBtn"><i class="icon fa fa-save"></i> 保存</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal"><i class="icon fa fa-times"></i> 取消</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	
+	<div id="viewModal" class="modal fade add-modal" tabindex="-1" role="dialog">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content" style="width:600px;">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title">查看信息</h4>
+				</div>
+				<div class="modal-body">
+					<form id="viewForm">
+						<div class="form-box">
+							<span class="tit">姓名：</span>
+							<input type="text" class="form-control" name="name"/>
+						</div>
+						<div class="form-box">
+							<span class="tit">性别：</span>
+							<select name="gender" required class="form-control">
+								<option value="男">男</option>
+								<option value="女">女</option>
+							</select>
+						</div>
+						<div class="form-box">
+							<span class="tit">出生时间：</span>
+							  <input name="birthday" size="16" class="form-control">
+						</div>
+						<div class="form-box">
+							<span class="tit">单位名称：</span>
+							<input type="text" class="form-control" name="companyName"/>
+						</div>
+						<div class="form-box">
+							<span class="tit">职称：</span>
+							<input type="text" class="form-control" name="jobTitle" />
+						</div>
+						<div class="form-box">
+							<span class="tit">电话：</span>
+							<input type="text" class="form-control" name="telephone"/>
+						</div>
+						<div class="form-box">
+							<span class="tit">邮箱：</span>
+							 <input type="email" class="form-control" name="email"/>
+						</div>
+						<div class="form-box">
+							<span class="tit">身份证号：</span>
+							<input type="text" class="form-control" name="idNumber" />
+						</div>
+						<div class="form-box">
+							<span class="tit">银行卡号：</span>
+							<input type="text" class="form-control" name="bankAccount"/>
+						</div>
+						<div class="form-box">
+							<span class="tit">开户行：</span>
+							<input type="text" class="form-control" name="bankDeposit"/>
+						</div>
+						<div class="form-box">
+							<span class="tit">单位地址：</span>
+							<input type="text" class="form-control" name="customerAddress"/>
+						</div>
+						<div class="form-box">
+							<span class="tit">研究领域：</span>
+							<textarea rows="2" class="form-control"name="researchField"></textarea>
+						</div>
+						<div class="form-box">
+							<span class="tit">主要学术成果：</span>
+							<textarea rows="2" class="form-control" name="achievement"></textarea>
+						</div>
+						<div class="form-box">
+							<span class="tit">备注：</span>
+							<textarea rows="2" class="form-control" name="descn"></textarea>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>

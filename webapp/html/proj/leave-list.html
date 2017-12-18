@@ -1,0 +1,282 @@
+<script src="../../js/inner/leave.js"></script>
+<div class="expert-body">
+		<h3 class="m-crumb">
+			当前位置：<span>人事管理 - 休假申请</span>
+		</h3>
+		<div class="box">
+			<div class="opera-box">
+				<span class="tit">请假类型：</span>
+				<select class="form-control" id="leave_type" >
+				  <option value=""></option>
+				  <option value="年假">年假</option>
+				  <option value="事假">事假</option>
+				  <option value="病假">病假</option>
+				  <option value="调休假">调休假</option>
+				  <option value="婚假">婚假</option>
+				  <option value="产假">产假</option>
+				  <option value="陪产假">陪产假</option>
+				  <option value="其他">其他</option>
+				</select>
+				<span class="tit">开始时间：</span>
+				<input type="text" class="form-control datepicker" id="leave_startDate" placeholder="请输入开始时间" required maxlength="50" style="display:inline-block;" />
+				<span class="tit">结束时间：</span>
+				<input type="text" class="form-control datepicker" id="leave_endDate" placeholder="请输入开始时间" required maxlength="50" style="display:inline-block;" />
+				<span class="tit">审批状态：</span>
+				<select class="form-control" id="leave_status" >
+				  <option value=""></option>
+				  <option value="inProcess">审批中</option>
+				  <option value="finish">审核完成</option>
+				  <option value="reject">驳回</option>
+				  <option value="withdraw">撤退</option>
+				</select>
+				<div class="opera-box">
+                   <div class="pull-right">
+                   <a class="btn btn-default btn-query" style="margin-bottom: -13px;" id="searchBtn"><i class="icon fa fa-search"></i> 查 询</a>
+                   <a class="btn btn-default btn-add" style="margin-bottom: -13px;" data-toggle="modal" data-target="#addModal" id="addLink">申请休假</a> 
+                   <a class="btn btn-default btn-del" style="margin-bottom: -13px;" id="delSelect"><i class="icon fa fa-trash-o"></i> 删 除</a>
+               </div>
+               </div>
+			</div>
+			<div class="table-box" style="margin-top: 18px;">
+				<table class="table table-bordered" id="table">
+					<thead>
+						<tr>
+							<th><input type="checkbox" id="selectAll" /></th>
+							<th>请假事由</th>
+							<th>类型</th>
+							<th>开始时间</th>
+							<th>结束时间</th>
+							<th>天数</th>
+							<th>填表时间</th>
+							<th>状态</th>
+							<th>操作</th>
+						</tr>
+					</thead>
+					<tbody>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+	<div id="delModal" class="modal fade del-modal" tabindex="-1" data-backdrop="static" data-keyboard="false"
+		role="dialog">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title">删除信息</h4>
+				</div>
+				<div class="modal-body">
+					<i class="del-warn"></i>确定删除吗？删除后将无法恢复！
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" id="delBtn">确定</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal"><i class="icon fa fa-times"></i> 取消</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="errorModal" class="modal fade del-modal" tabindex="-1" data-backdrop="static" data-keyboard="false"
+		role="dialog">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title">提示</h4>
+				</div>
+				<div class="modal-body">
+					<i class="del-warn" style="margin-left: 23px; margin-top: -52px;"></i>
+					<table>
+						<tbody id="tbody">
+
+						</tbody>
+					</table>
+
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" data-dismiss="modal">确定</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="startModal" class="modal fade start-modal" tabindex="-1" data-backdrop="static" data-keyboard="false"
+		role="dialog">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title">提示信息</h4>
+				</div>
+				<div class="modal-body">
+					<i class="del-warn"></i>提交休假申请。
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" id="startBtn">确定</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal"><i class="icon fa fa-times"></i> 取消</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="withdrawModal" class="modal fade withdraw-modal" tabindex="-1" data-backdrop="static" data-keyboard="false"
+		role="dialog">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title">提示信息</h4>
+				</div>
+				<div class="modal-body">
+					<i class="del-warn"></i>撤销休假申请。
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" id="withdrawBtn">确定</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal"><i class="icon fa fa-times"></i> 取消</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="alertModal" class="modal fade del-modal" tabindex="-1" data-backdrop="static" data-keyboard="false"
+		role="dialog">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title">提示</h4>
+				</div>
+				<div class="modal-body">
+					<i class="del-warn"></i>请选择希望删除的数据。
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" data-dismiss="modal">确定</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="withdrawModal" class="modal fade withdraw-modal" tabindex="-1" data-backdrop="static" data-keyboard="false"
+		role="dialog">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title">提示信息</h4>
+				</div>
+				<div class="modal-body">
+					<i class="del-warn"></i>撤销报销申请。
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" id="withdrawBtn">确定</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal">
+						<i class="icon fa fa-times"></i> 取消
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="addModal" class="modal fade add-modal" tabindex="-1"
+		role="dialog" data-backdrop="static" data-keyboard="false">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title">新增信息</h4>
+				</div>
+				<div class="modal-body">
+					<form id="addForm">
+						<div class="form-box">
+							<span class="tit">休假类型：</span>
+							
+							<select class="form-control" name="type" id="leaveType" style="width: 56%" required>
+							</select>
+						</div>
+						<div class="form-box">
+							<span class="tit">休假开始时间：</span> 
+							<input type="text" class="form-control datepicker"  name="startDate" placeholder="请输入开始时间" required maxlength="50" style="display:inline-block;width: 56%" />
+						</div>
+						<div class="form-box">
+							<span class="tit">休假结束时间：</span> 
+							<input type="text" class="form-control datepicker" name="endDate" placeholder="请输入结束时间" required maxlength="50" style="display:inline-block;width: 56%" />
+						</div>
+						<div class="form-box">
+							<span class="tit">休假天数：</span> 
+							<input type="text" class="form-control" name="day" placeholder="请输入天数" required maxlength="50" style="display:inline-block;width: 56%" />
+						</div>
+						<div class="form-box">
+							<span class="tit">休假事由：</span>
+							<textarea rows="2" class="form-control" name="reason" placeholder="请输入请假事由" maxlength="200" required style="width: 56%"></textarea>
+						</div>
+						<span id="addErrorMessage" style="color:red"></span>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" id="addSaveBtn"><i class="icon fa fa-save"></i> 保存</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal"><i class="icon fa fa-times"></i> 取消</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="editModal" class="modal fade edit-modal" tabindex="-1" data-backdrop="static" data-keyboard="false"
+		role="dialog">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title">编辑信息</h4>
+				</div>
+				<div class="modal-body">
+					<form id="editForm">
+						<input type="hidden" name="id">
+						<div class="form-box">
+							<span class="tit">休假类型：</span>
+							<select class="form-control" name="type" id="editLeaveType" required>
+							</select>
+						</div>
+						<div class="form-box">
+							<span class="tit">休假开始时间：</span> 
+							<input type="text" class="form-control datepicker" name="startDate" placeholder="请输入开始时间" required maxlength="50" style="display:inline-block;" />
+						</div>
+						<div class="form-box">
+							<span class="tit">休假结束时间：</span> 
+							<input type="text" class="form-control datepicker" name="endDate" placeholder="请输入结束时间" required maxlength="50" style="display:inline-block;" />
+						</div>
+						<div class="form-box">
+							<span class="tit">休假天数：</span> 
+							<input type="text" class="form-control" name="day" placeholder="请输入天数" required maxlength="50" style="display:inline-block;" />
+						</div>
+						<div class="form-box">
+							<span class="tit">休假事由：</span>
+							<textarea rows="2" class="form-control" name="reason" placeholder="请输入请假事由" maxlength="200" ></textarea>
+						</div>
+						<span id="addErrorMessage" style="color:red"></span>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" id="editSaveBtn"><i class="icon fa fa-save"></i> 保存</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal"><i class="icon fa fa-times"></i> 取消</button>
+				</div>
+			</div>
+		</div>
+	</div>

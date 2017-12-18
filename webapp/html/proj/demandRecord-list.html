@@ -1,0 +1,315 @@
+<script src="../../js/inner/demandRecord.js"></script>
+<div class="expert-body">
+	<h3 class="m-crumb">
+			当前位置：<span>项目管理-项目机会跟踪</span>
+		</h3>
+		<div class="box">
+		
+			<div class="opera-box">
+				<div class="pull-right">
+					<a class="btn btn-default toInfoLikk" data-toggle="modal" ><i class="icon fa fa-reply"></i> 返 回</a><!-- 要用js的load到机会页面 -->
+					<a class="btn btn-default btn-add" data-toggle="modal" data-target="#addModal" id="addLink"><i class="icon fa fa-plus"></i> 新 增</a>
+					<a class="btn btn-default btn-del" id="delSelect"><i class="icon fa fa-trash-o"></i> 删 除</a>
+				</div>
+			</div>
+		
+			<div class="table-box">
+				<table class="table table-bordered" id="table">
+					<thead>
+						<tr>
+							<th><input type="checkbox" id="selectAll" /></th>
+							<th>序号</th>
+							<th>我方参与人员</th>
+							<th>客户参与人员</th>
+							<th>开始时间</th>
+							<th>结束时间</th>
+							<th>沟通方式</th>
+							<th>会议地址</th>
+							<th>状态</th>
+							<th>操作</th>
+						</tr>
+					</thead>
+					<tbody>
+					</tbody>
+				</table>
+			</div>
+		</div>
+</div>
+	<div id="delModal" class="modal fade del-modal" tabindex="-1" role="dialog">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title">删除信息</h4>
+				</div>
+				<div class="modal-body">
+					<i class="del-warn"></i>确定删除吗？删除后将无法恢复！
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" id="delBtn">确定</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal"><i class="icon fa fa-times"></i> 取消</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="alertModal" class="modal fade del-modal" tabindex="-1" role="dialog">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title">提示</h4>
+				</div>
+				<div class="modal-body">
+					<i class="del-warn"></i>请选择希望删除的数据。
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" data-dismiss="modal">确定</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div id="addModal" class="modal fade add-modal" tabindex="-1" role="dialog" style="overflow:scroll">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content" style="width:600px;" >
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title">添加项目追踪信息</h4>
+				</div>
+				<div class="modal-body">
+					<form id="addForm">
+						<!-- 隐藏域，存储demandInfoId -->
+						<input type="hidden" name="demandInfoId" id="demandInfoId">
+						
+						<div class="form-box">
+							<span class="tit"><i class="icon fa fa-asterisk red smaller-70"></i>我方参与人员：</span> 
+							<input type="text" class="form-control userPicker" name="partyaPerson"  required placeholder="请输入我方参与人员,逗号隔开"
+								required maxlength="100" data-callback="callbackUserPicker_add" data-multiple="true"/>
+						</div>
+						<div class="form-box">
+							<span class="tit"><i class="icon fa fa-asterisk red smaller-70"></i>客户参与人员：</span> 
+							<input type="text"class="form-control" name="partybPerson" required  placeholder="请输入客户参与人员,逗号隔开"
+								required maxlength="100"/>
+						</div>
+						<div class="form-box">
+							<span class="tit"><i class="icon fa fa-asterisk red smaller-70"></i>客户联系人：</span> 
+							<input type="text"class="form-control" name="partyName" required  placeholder="请输入客户联系人" maxlength="100"/>
+						</div>
+						<div class="form-box">
+							<span class="tit"><i class="icon fa fa-asterisk red smaller-70"></i>客户联系方式：</span> 
+							<input type="text"class="form-control" name="customerPhone" required  placeholder="请输入客户联系方式" maxlength="100"/>
+						</div>
+						<div class="form-box">
+							<span class="tit"><i class="icon fa fa-asterisk red smaller-70"></i>沟通方式：</span>
+							<select name="communicationType" class="form-control">
+								<option value="电话">电话</option>
+								<option value="会议">会议</option>
+							</select>
+						</div>
+						<div class="form-box" >
+						<span class="tit"><i class="icon fa fa-asterisk red smaller-70"></i>开始时间：</span> 
+							  <input name="startTime" id="startTime" class="form-control" size="16" value="" placeholder="请选择开始时间"
+								 required  type="text">
+                		</div>
+						<div class="form-box">
+							<span class="tit"><i class="icon fa fa-asterisk red smaller-70"></i>结束时间：</span> 
+							  <input name="endTime" id="endTime" class="form-control" size="16" value="" placeholder="请选择结束时间"
+								 required  type="text">
+						</div>
+						<div class="form-box">
+							<span class="tit"><i class="icon fa fa-asterisk red smaller-70"></i>沟通地点：</span> 
+							<input type="text" class="form-control" name="meetingAdress"  required  maxlength="100" placeholder="请输入沟通地点"/>
+						</div>
+						<div class="form-box">
+							<span class="tit"><i class="icon fa fa-asterisk red smaller-70"></i>需求描述：</span>
+							<textarea rows="2" class="form-control" name="content" required  maxlength="1000" placeholder="请输入需求描述"></textarea>
+						</div>
+						<div class="form-box">
+							<span class="tit">机会进展文件：</span>
+							<a href="javascript:;" class="a-upload"><input id="addDemandRecordFile" type="file" name="file" multiple onchange ="oneupload(null,null,'addDemandRecordFile','addDemandRecordFiles')"/>点击上传文件</a>
+						</div>
+						<div id="addDemandRecordFiles">
+						</div>
+						<div class="form-box">
+							<span class="tit"><i class="icon fa fa-asterisk red smaller-70"></i>状态：</span> 
+							<select name="status" class="form-control">
+								<option value="洽谈中">洽谈中</option>
+								<option value="已签订">已签订</option>
+								<option value="机会终止">机会终止</option>
+							</select>
+						</div>
+						<div class="form-box">
+							<span class="tit">备注：</span>
+							<textarea rows="2" class="form-control" name="descn"  maxlength="1000" placeholder="请输入备注"></textarea>
+						</div>
+						<span id="addErrorMessage" style="color:red"></span>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" id="addSaveBtn"><i class="icon fa fa-save"></i> 保存</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal"><i class="icon fa fa-times"></i> 取消</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	
+	<div id="editModal" class="modal fade add-modal" tabindex="-1" role="dialog" style="overflow:scroll">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content" style="width:600px;">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title">修改项目追踪信息</h4>
+				</div>
+				<div class="modal-body">
+					<form id="editForm">
+						<input type="hidden" name="id">
+						<input type="hidden" name="demandInfoId" id="demandInfoId">
+						
+						<div class="form-box">
+							<span class="tit"><i class="icon fa fa-asterisk red smaller-70"></i>我方参与人员：</span> 
+							<input type="text" class="form-control userPicker" name="partyaPerson"  required placeholder="请输入我方参与人员,逗号隔开"
+								required maxlength="100" data-multiple="true" data-callback="callbackUserPicker_edit"/>
+						</div>
+						<div class="form-box">
+							<span class="tit"><i class="icon fa fa-asterisk red smaller-70"></i>客户参与人员：</span> 
+							<input type="text"class="form-control" name="partybPerson" required  placeholder="请输入客户参与人员,逗号隔开"
+								required maxlength="100"/>
+						</div>
+						<div class="form-box">
+							<span class="tit"><i class="icon fa fa-asterisk red smaller-70"></i>客户联系人：</span> 
+							<input type="text"class="form-control" name="partyName" required  placeholder="请输入客户联系人" maxlength="100"/>
+						</div>
+						<div class="form-box">
+							<span class="tit"><i class="icon fa fa-asterisk red smaller-70"></i>客户联系方式：</span> 
+							<input type="text"class="form-control" name="customerPhone" required  placeholder="请输入客户联系方式" maxlength="100"/>
+						</div>
+						<div class="form-box">
+							<span class="tit"><i class="icon fa fa-asterisk red smaller-70"></i>沟通方式：</span>
+							<select name="communicationType" class="form-control">
+								<option value="电话">电话</option>
+								<option value="会议">会议</option>
+							</select>
+						</div>
+						<div class="form-box" >
+						<span class="tit"><i class="icon fa fa-asterisk red smaller-70"></i>开始时间：</span> 
+							  <input name="startTime" id="startTime_edit" class="form-control" size="16" value="" placeholder="请选择开始时间"
+								 required  type="text">
+                		</div>
+						<div class="form-box">
+							<span class="tit"><i class="icon fa fa-asterisk red smaller-70"></i>结束时间：</span> 
+							  <input name="endTime" id="endTime_edit" class="form-control" size="16" value="" placeholder="请选择结束时间"
+								 required  type="text">
+						</div>
+						<div class="form-box">
+							<span class="tit"><i class="icon fa fa-asterisk red smaller-70"></i>沟通地点：</span> 
+							<input type="text" class="form-control" name="meetingAdress"  required  maxlength="100" placeholder="请输入沟通地点"/>
+						</div>
+						<div class="form-box">
+							<span class="tit"><i class="icon fa fa-asterisk red smaller-70"></i>需求描述：</span>
+							<textarea rows="2" class="form-control" name="content" required  maxlength="1000" placeholder="请输入需求描述"></textarea>
+						</div>
+						<div class="form-box">
+							<span class="tit">机会进展文件：</span>
+							<a href="javascript:;" class="a-upload"><input id="editDemandRecordFile" type="file" name="file" multiple onchange ="oneupload(null,null,'editDemandRecordFile','editDemandRecordFiles')"/>点击上传文件</a>
+						</div>
+						<div id="editDemandRecordFiles">
+						</div>
+						<div class="form-box">
+							<span class="tit"><i class="icon fa fa-asterisk red smaller-70"></i>状态：</span> 
+							<select name="status" class="form-control">
+								<option value="洽谈中">洽谈中</option>
+								<option value="已签订">已签订</option>
+								<option value="机会终止">机会终止</option>
+							</select>
+						</div>
+						<div class="form-box">
+							<span class="tit">备注：</span>
+							<textarea rows="2" class="form-control" name="descn"  maxlength="1000" placeholder="请输入备注"></textarea>
+						</div>
+						<span id="editErrorMessage" style="color:red"></span>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" id="editSaveBtn"><i class="icon fa fa-save"></i> 保存</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal"><i class="icon fa fa-times"></i> 取消</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	
+	<div id="viewModal" class="modal fade add-modal" tabindex="-1" role="dialog">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content" style="width:600px;">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title">查看具体信息</h4>
+				</div>
+				<div class="modal-body">
+					<form id="viewForm">
+						<div class="form-box">
+							<span class="tit">我方参与人员：</span> 
+							<input type="text" class="form-control" name="partyaPerson"   />
+						</div>
+						<div class="form-box">
+							<span class="tit">客户参与人员：</span> 
+							<input type="text"class="form-control" name="partybPerson"  />
+						</div>
+						<div class="form-box">
+							<span class="tit">客户联系人：</span> 
+							<input type="text"class="form-control" name="partyName" />
+						</div>
+						<div class="form-box">
+							<span class="tit">客户联系方式：</span> 
+							<input type="text"class="form-control" name="customerPhone"/>
+						</div>
+						<div class="form-box">
+							<span class="tit">沟通方式：</span>
+							<input type="text" class="form-control" name="communicationType"  />
+						</div>
+						<div class="form-box">
+							<span class="tit">开始时间：</span> 
+							<input type="text" class="form-control" name="startTime"  />
+						</div>
+						<div class="form-box">
+							<span class="tit">结束时间：</span> 
+							<input type="text" class="form-control" name="endTime"  />
+						</div>
+						<div class="form-box">
+							<span class="tit">沟通地点：</span> 
+							<input type="text" class="form-control" name="meetingAdress"  />
+						</div>
+						
+						<div class="form-box">
+							<span class="tit">需求描述：</span>
+							<textarea rows="2" class="form-control" name="content"  ></textarea>
+						</div>
+						<div class="form-box">
+							<span class="tit">机会进展文件：</span>
+						</div>
+						<div id="viewDemandRecordFiles">
+						</div>
+						<div class="form-box">
+							<span class="tit">状态：</span> 
+							<input type="text" class="form-control" name="status"  />
+						</div>
+						<div class="form-box">
+							<span class="tit">备注：</span>
+							<textarea rows="2" class="form-control" name="descn"  ></textarea>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>

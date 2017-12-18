@@ -1,0 +1,351 @@
+<script src="../../js/inner/info-new.js"></script>
+<script src="../../js/multiple-select.js"></script>
+<link rel="stylesheet" href="../../css/multiple-select.css">
+
+</head>
+<body class="expert-body">
+	<div>
+		<h3 class="m-crumb">
+			当前位置：<span>项目管理-项目列表</span>
+		</h3>
+		<div class="box">
+			<div class="opera-box">
+				<span class="tit">项目名称：</span>
+					<input type="text" class="form-control" id="name" /> 
+				<span class="tit">开始时间：</span>
+					<input type="text" class="form-control datepicker" id="startDate"/>
+				<span class="tit">结束时间：</span>
+					<input type="text" class="form-control datepicker" id="endDate"/>
+				<span class="tit">项目状态：</span> 
+					<select id="status" class="form-control">
+						<option value="">请选择</option>
+						<option>合同签订</option>
+						<option value="调研">出差调研</option>
+						<option value="初稿">编写初稿</option>
+						<option value="终稿">编写终稿</option>
+						<option value="项">项目结束</option>
+					</select>
+			</div>
+			<div class="opera-box">
+				<span class="tit">客户名称：</span> 
+				<input type="text" class="form-control" id="customerName" /> 
+			</div>
+			<div class="opera-box">
+				<div class="pull-right">
+					<a class="btn btn-default btn-query" id="searchBtn"><i class="icon fa fa-search"></i> 查 询</a>
+					<a class="btn btn-default btn-add" data-toggle="modal" data-target="#modal" onclick="preAdd()"><i class="icon fa fa-plus"></i> 新 增</a> 
+					<a class="btn btn-default btn-del" onclick="doDel()"><i class="icon fa fa-trash-o"></i> 删 除</a>
+				</div>
+			</div>
+
+			<div class="table-box">
+				<table class="table table-bordered" id="table">
+					<thead>
+						<tr>
+							<th><input type="checkbox" id="selectAll" /></th>
+							<th>编号</th>
+							<th>项目名称</th>
+							<th>客户名称</th>
+							<th>项目开始时间</th>
+							<th>项目截止时间</th>
+							<th style="width: 140px;">项目状态</th>
+							<th>创建时间</th>
+							<th>操作</th>
+						</tr>
+					</thead>
+					<tbody>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+	
+	<div id="modal" class="modal fade add-modal" tabindex="-1" data-keyboard="false" role="dialog"  style="overflow:scroll">
+		<div class="modal-dialog" role="document" style="width: 800px">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 id="title" class="modal-title">新增信息</h4>
+				</div>
+				<div class="modal-body">
+					
+					<ul class="nav nav-tabs" style="margin-bottom:10px;">
+  						<li role="presentation" class="active"><a id="openInfoForm" onclick="openInfoForm()">基本信息</a></li>
+ 						<li role="presentation"><a id="openMemberInfoForm" onclick="openMemberInfoForm()">项目成员</a></li>
+ 						<li role="presentation"><a id="openPlanInfoForm" onclick="openPlanInfoForm()">项目计划</a></li>
+				    </ul>
+					 
+				    <!-- 添加项目基本信息表单 -->
+					<form id="infoForm">
+						<input type="hidden" name="id">
+						<input type="hidden" name="contractId"><!-- 合同Id -->
+						<input type="hidden" name="status">
+						<input type="hidden" name="managerId">
+						
+
+						<div class="form-box">
+							<span class="tit"><i class="icon fa fa-asterisk red smaller-70"></i>合同名称：</span> 
+							<label for="contractName" style="display:none"></label>
+							<input id="contractName" name="contractName" class="form-control"  required placeholder="请选择合同" style="width: 550px;">
+						</div>
+						<div class="form-box">
+							<span class="tit"><i class="icon fa fa-asterisk red smaller-70"></i>合同权重：</span> 
+							<input id=weight name="weight" class="form-control isOneToOneHundred" onBlur="findContractMoney()" required placeholder="请输入权重" style="width: 550px;">%
+						</div>
+						<div class="form-box">
+							<span class="tit"><i class="icon fa fa-asterisk red smaller-70"></i>项目金额：</span> 
+							<input name="contractMoney" class="form-control" required readonly style="width: 550px;">元
+						</div>
+						<div class="form-box">
+							<span class="tit"><i class="icon fa fa-asterisk red smaller-70"></i>项目名称：</span> 
+							<input type="text" class="form-control" name="name" placeholder="请输入项目名称" required maxlength="100" style="width: 550px;"/>
+						</div>
+						<div class="form-box">
+							<span class="tit"><i class="icon fa fa-asterisk red smaller-70"></i>项目负责人：</span> 
+							<input type="text" class="form-control userPicker" data-callback="callbackManager" name="managerName" placeholder="请选择项目负责人" style="width: 550px;"
+								 required maxlength="50"/>
+						</div>
+						<div class="form-box">
+							<span class="tit">项目助理：</span><!-- 项目负责人助理 -->
+							<input type="text" class="form-control userPicker" data-callback="callbackManagerAssistant" name="managerAssistant" placeholder="请选择项目助理"  maxlength="11"  style="width: 550px;"/>
+						</div>
+						<div class="form-box">
+							<span class="tit"><i class="icon fa fa-asterisk red smaller-70"></i>项目类型：</span>
+							<select name="projectType" id="projectType" class="form-control" required style="width: 550px;">
+							</select>
+						</div>
+						<div class="form-box">
+							<span class="tit"><i class="icon fa fa-asterisk red smaller-70"></i>客户名称：</span> 
+							<label for="customerName" style="display:none"></label>
+								<input id="customerName" class="form-control" placeholder="请选择客户名称" name="customerName" required style="width: 550px;">
+						</div>
+						<div class="form-box">
+							<span class="tit"><i class="icon fa fa-asterisk red smaller-70"></i>客户电话：</span> 
+							<input type="text" class="form-control" name="telephone" placeholder="请输入客户电话" required maxlength="100" style="width: 550px;"/>
+						</div>
+						<div class="form-box">
+							<span class="tit"><i class="icon fa fa-asterisk red smaller-70"></i>开始时间：</span> 
+							<input type="text" class="form-control datepicker" name="startDate" placeholder="请输入开始时间" required maxlength="50" style="width: 550px;"/>
+						</div>
+						<div class="form-box">
+							<span class="tit"><i class="icon fa fa-asterisk red smaller-70"></i>结束时间：</span> 
+							<input type="text" class="form-control datepicker" name="endDate" placeholder="请输入结束时间" required maxlength="50" style="width: 550px;"/>
+						</div>
+						<div class="form-box">
+							<span class="tit"><i class="icon fa fa-asterisk red smaller-70"></i>外聘专家：</span>
+							<label class="radio-inline">
+								<input type="radio" onclick="selectNeedExeport(1)" id="needRadio" style="margin-left:-20px;">
+								需要
+							</label>
+							<label class="radio-inline">
+								<input type="radio" onclick="selectNeedExeport(0)" id="notNeedRadio" style="margin-left:-20px;">
+								不需要
+							</label>
+								<input type="text" style="display:none;width:420px" id="needExpert" name="needExpert" onclick="selectExpert(this)"
+									class="form-control" required readonly placeholder="请选择专家">
+						</div>
+						<div class="form-box">
+							<span class="tit"><i class="icon fa fa-asterisk red smaller-70"></i>需求大纲文件：</span>
+							<a href="javascript:;" class="a-upload"><input id="demandFile" type="file" name="file" multiple onchange ="oneupload(null,null,'demandFile','demandFiles')"/>点击上传文件</a>
+						</div>
+						<div id="demandFiles">
+						
+						</div>
+
+						<div class="form-box">
+							<span class="tit">备注：</span> 
+							<textarea rows="2" class="form-control" name="descn" placeholder="请输入备注" maxlength="200" style="width: 550px;"></textarea>
+						</div>
+							
+						<span id="editInfoErrorMessage" style="color:red"></span>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-primary" onclick="validateInfoForm()">下一步</button>
+							<button type="button" class="btn btn-default" data-dismiss="modal"><i class="icon fa fa-times"></i> 取消</button>
+						</div>
+					</form>
+					 <!-- 添加项目成员表单 -->
+					<form id="memberInfoForm" style="display:none;">
+						<!-- 隐藏域用于存放projctId -->
+						<input type="hidden" name="projectId">
+						<!-- 在表格selectedMember标签下面追加添加的成员 -->
+						<table id="selectedMember" style="width: 100%;margin:auto" class="table table-bordered">
+							<thead>
+								<tr>
+									<th width="150px">用户名</th>
+									<!-- <th width="">电话号码</th>  -->
+									<th width="150px">组长</th>
+									<th width="150px">操作</th>
+								</tr>
+							</thead>
+							<tbody>
+							</tbody>
+						</table>
+						<div class="modal-footer">
+							<!-- 点这个按钮，初始化成员表格 -->
+							<a data-toggle="modal" class="btn btn-default" onclick="initAllMemberInfo(this)" data-multiple="true" data-callback="memberAdd">添加成员</a>
+							<button type="button" class="btn btn-primary" onclick="validateMemberInfo()">下一步</button>
+							<button type="button" class="btn btn-default" data-dismiss="modal"><i class="icon fa fa-times"></i> 取消</button>
+						</div>
+					</form>
+					
+					
+					<!-- 添加项目计划表单 -->
+					<form id="planInfoForm" style="display:none;">
+						<!-- 隐藏域存放 -->
+						<input type="hidden" name="projectId">
+						<input type="hidden" name="projectName">
+						<input type="hidden" name="managerId"><!-- 项目负责人Id -->
+						<input type="hidden" name="managerName"><!-- 项目负责人Name -->
+						
+						
+						<!-- <input type="hidden" name="version"> -->
+						<h4 align="center">项目总体计划表</h4>
+						<table class="table table-bordered">
+							<thead>
+								<tr>
+									<th style="width:100px;">计划名称</th>
+									<th style="width:130px;">合同中规定时间</th>
+									<th style="width:130px;">开始时间</th>
+									<th style="width:130px;">结束时间</th>
+									<th>参与人员</th>
+								</tr>
+							</thead>
+							<tbody id="planInfoTbody">
+							</tbody>
+						</table>
+						<div class="form-box">
+							<span class="tit">任务附件：</span>
+							<a href="javascript:;" class="a-upload"><input id="taskFile" type="file" name="file" multiple onchange ="oneupload(null,null,'taskFile','taskFiles')"/>点击上传文件</a>
+						</div>
+						<div id="taskFiles">
+						
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-primary" onclick="save()"><i class="icon fa fa-save"></i> 保存</button>
+							<button type="button" class="btn btn-default" data-dismiss="modal"><i class="icon fa fa-times"></i> 取消</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	
+	<!-- 添加成员 -->
+	<div id="memberModal" class="modal fade add-modal" tabindex="-1" role="dialog">
+		<div class="modal-dialog" role="document" style="width:80%;">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title">添加项目成员</h4>
+				</div>
+				<div class="modal-body">
+					<div class="container-fluid">
+						<div class="col-md-2">
+							<div class="ztree" id="deptTree"></div>
+						</div>
+						<div class="table-box col-md-10">
+							<table class="table table-bordered" id="tableMember">
+								<thead>
+									<tr>
+										<th style="width:50px;"></th>
+										<th style="">成员名称</th>
+										<th style="">联系电话</th>
+										<th style="">参与项目</th>
+										<th style="">是否休假</th>
+										<th style="">是否出差</th>
+										<th style="">出差地点</th>
+										<th style="">出差周期时间</th>
+									</tr>
+								</thead>
+								<tbody></tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<a data-toggle="modal" data-target="#memberModal" onclick="appendMember()" class="btn btn-default">添加</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<!-- 添加专家 -->
+	<div id="expertModal" class="modal fade add-modal" tabindex="-1" role="dialog">
+		<div class="modal-dialog" role="document" style="width:60%;">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title">添加专家</h4>
+				</div>
+				<div class="modal-body">
+					<div class="container-fluid">
+						<div class="table-box col-md-10">
+							<table class="table table-bordered" id="tableExpert">
+								<thead>
+									<tr>
+										<th style="width:50px;"></th>
+										<th style="width:100px;">姓名</th>
+										<th style="">研究领域</th>
+										<th style="">学术成果</th>
+									</tr>
+								</thead>
+								<tbody></tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<a data-toggle="modal" data-target="expertModal" onclick="appendExpert()" class="btn btn-default">添加</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	
+	<div id="delModal" class="modal fade del-modal" tabindex="-1" role="dialog">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title">删除信息</h4>
+				</div>
+				<div class="modal-body">
+					<i class="del-warn"></i>确定删除吗？删除后将无法恢复！
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" onclick="doDel();">确定</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal"><i class="icon fa fa-times"></i> 取消</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="alertModal" class="modal fade del-modal" tabindex="-1"
+		role="dialog">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title">提示</h4>
+				</div>
+				<div class="modal-body">
+					<i class="del-warn"></i>请选择希望删除的数据。
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" data-dismiss="modal">确定</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	</body>
+</html>

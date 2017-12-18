@@ -1,0 +1,49 @@
+<script src="../../js/inner/contract.js"></script>
+<div class="expert-body">
+	<h3 class="m-crumb">
+		当前位置：<span>项目管理-合同管理</span>
+	</h3>
+	<div class="box">
+		<div class="opera-box">
+			<span class="tit">合同名称：</span>
+				<input type="text" class="form-control" id="name" />
+			<span class="tit">签订时间：</span>
+				<input type="text" class="form-control datepicker" id="registerDate1" />
+			<span class="tit">至：</span>
+				<input type="text" class="form-control datepicker" id="registerDate2" />
+			<span class="tit">终稿成果时间：</span>
+				<input type="text" class="form-control datepicker" id="resultDateZg1" />
+			<span class="tit">至：</span>
+				<input type="text" class="form-control datepicker" id="resultDateZg2" />
+		</div>
+		<div class="opera-box" style="margin-top: 5px;">
+			<div class="pull-right">
+				<a class="btn btn-default btn-query" id="searchBtn"><i
+					class="icon fa fa-search"></i> 查 询</a>
+				<!--  
+					<a class="btn btn-default btn-add" data-toggle="modal" data-target="#addModal" id="addLink"><i class="icon fa fa-plus"></i> 新 增</a> 
+					<a class="btn btn-default btn-del" id="delSelect"><i class="icon fa fa-trash-o"></i> 删 除</a>
+					-->
+			</div>
+		</div>
+		<div class="table-box">
+			<table class="table table-bordered" id="table">
+				<thead>
+					<tr>
+						<th>序号</th>
+						<th>合同号</th>
+						<th>合同名称</th>
+						<th>头款时间</th>
+						<th>中款时间</th>
+						<th>尾款时间</th>
+						<th>签订时间</th>
+						<th>创建时间</th>
+						<th>操作</th>
+					</tr>
+				</thead>
+				<tbody>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,62 @@
+<script src="../../js/inner/process.js"></script>
+</head>
+<body class="expert-body">
+	<div>
+		<h3 class="m-crumb">
+			当前位置：<span>查询统计-项目进度查询统计</span>
+		</h3>
+		<div class="box">
+			<div class="opera-box" id="select">
+				<span class="tit">项目名称：</span>
+					<input type="text" class="form-control" id="name" name="name"/> 
+				<span class="tit">项目开始时间：</span>
+					<input type="text" class="form-control datepicker" id="startDate"/>
+				<span class="tit">项目截止时间：</span>
+					<input type="text" class="form-control datepicker" id="endDate"/>
+				<span class="tit">项目状态：</span> 
+					<select id="status" class="form-control">
+						<option value="">请选择</option>
+						<option>合同签订</option>
+						<option>出差调研</option>
+						<option>调研完成</option>
+						<option>编写初稿</option>
+						<option>提交初稿</option>
+						<option>编写终稿</option>
+						<option>提交终稿</option>
+						<option>项目结束</option>
+					</select>
+			</div>
+			<div class="opera-box">
+				<div class="pull-right">
+					<a class="btn btn-default btn-query" id="searchBtn"><i class="icon fa fa-search"></i> 查 询</a>
+					<a class="btn btn-default btn-query" id="export" onclick="exportBtn()"><i class="icon fa fa-arrow-down"></i> 导 出</a>
+					<a class="btn btn-default btn-query" id="export" onclick="exportZouBaoExcel()"><i class="icon fa fa-arrow-down"></i> 导出经营周报表</a>
+				</div>
+			</div>
+
+			<div class="table-box">
+				<table class="table table-bordered" id="table">
+					<thead>
+						<tr>
+						    <th></th>
+							<th>序号</th>
+							<th>项目名称</th>
+							<th>负责人</th>
+							<!-- <th>合同金额(元)</th>
+							<th>回款金额(元)</th> -->
+							<th>项目开始时间</th>
+							<th>项目截止时间</th>
+							<th>约定初稿时间</th>
+							<th>约定终稿时间</th>
+							<th>实际初稿时间</th>
+							<th>实际终稿时间</th>
+							<th style="width: 140px;">项目状态</th>
+						</tr>
+					</thead>
+					<tbody>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</body>

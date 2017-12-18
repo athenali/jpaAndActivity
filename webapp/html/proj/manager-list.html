@@ -1,0 +1,157 @@
+<script src="../../js/multiple-select.js"></script>
+<script src="../../js/inner/manager.js"></script>
+<div class="expert-body">
+		<h3 class="m-crumb">
+			当前位置：<span>系统管理 - 分管配置</span>
+		</h3>
+		<div class="box">
+			<div class="opera-box">
+				<span class="tit">领导姓名：</span>
+				<input type="text" class="form-control"
+					id="manager_displayName" />
+				<span class="tit">分管处室：</span>
+				<select id="deptId" class="form-control">
+				</select>
+			</div>
+			<div class="opera-box">
+				<div class="pull-right">
+					<a class="btn btn-default btn-query" id="searchBtn"><i class="icon fa fa-search"></i> 查 询</a>
+					<a class="btn btn-default btn-add" data-toggle="modal"
+						data-target="#addModal" id="addLink"><i class="icon fa fa-plus"></i> 新 增</a> <a
+						class="btn btn-default btn-del" id="delSelect"><i class="icon fa fa-trash-o"></i> 删 除</a>
+				</div>
+			</div>
+			<div class="table-box">
+				<table class="table table-bordered" id="table">
+					<thead>
+						<tr>
+							<th><input type="checkbox" id="selectAll" /></th>
+							<th>领导姓名</th>
+							<th>分管处室</th>
+							<th>备注</th>
+							<th>操作</th>
+						</tr>
+					</thead>
+					<tbody>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+	<div id="delModal" class="modal fade del-modal" tabindex="-1"
+		role="dialog">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title">删除信息</h4>
+				</div>
+				<div class="modal-body">
+					<i class="del-warn"></i>确定删除吗？删除后将无法恢复！
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" id="delBtn">确定</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal"><i class="icon fa fa-times"></i> 取消</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="alertModal" class="modal fade del-modal" tabindex="-1"
+		role="dialog">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title">提示</h4>
+				</div>
+				<div class="modal-body">
+					<i class="del-warn"></i>请选择希望删除的数据。
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" data-dismiss="modal">确定</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="addModal" class="modal fade add-modal" tabindex="-1"
+		role="dialog">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content" style="width:600px;">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title">新增信息</h4>
+				</div>
+				<div class="modal-body">
+					<form id="addForm">
+					<input type="hidden" name=username>
+						<div class="form-box">
+							<span class="tit">领导姓名：</span>
+							<input type="text" class="form-control" name="displayName" required id="add_displayName" />
+						</div>
+						<div class="form-box">
+							<span class="tit">分管处室：</span>
+							<select name="deptId" required class="form-control"></select>
+						</div>
+						<div class="form-box">
+							<span class="tit">备注：</span>
+							<textarea rows="2" class="form-control" name="descn" placeholder="请输入备注" maxlength="200"
+							></textarea>
+						</div>
+						<span id="addErrorMessage" style="color:red"></span>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" id="addSaveBtn"><i class="icon fa fa-save"></i> 保存</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal"><i class="icon fa fa-times"></i> 取消</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="editModal" class="modal fade edit-modal" tabindex="-1"
+		role="dialog">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content" style="width:600px;">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title">编辑信息</h4>
+				</div>
+				<div class="modal-body">
+					<form id="editForm">
+						<!-- *******用于修改的id********* -->
+						<input type="hidden" name="id">
+						<input type="hidden" name=username>
+						<div class="form-box">
+							<span class="tit">领导姓名：</span>
+							<input type="text" class="form-control" name="displayName" required id="edit_displayName" />
+						</div>
+						<div class="form-box">
+							<span class="tit">分管处室：</span>
+							<select name="deptId" required class="form-control"></select>
+						</div>
+						<div class="form-box">
+							<span class="tit">备注：</span>
+							<textarea rows="2" class="form-control" name="descn" placeholder="请输入备注" maxlength="200"
+							></textarea>
+						</div>
+						<span id="editErrorMessage" style="color:red"></span>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" id="editSaveBtn"><i class="icon fa fa-save"></i> 保存</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal"><i class="icon fa fa-times"></i> 取消</button>
+				</div>
+			</div>
+		</div>
+	</div>

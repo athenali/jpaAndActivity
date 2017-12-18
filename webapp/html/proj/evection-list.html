@@ -1,0 +1,286 @@
+<script src="../../js/inner/evection.js"></script>
+<script src="../../js/multiple-select.js"></script>
+<link rel="stylesheet" href="../../css/multiple-select.css">
+<div class="expert-body">
+       <h3 class="m-crumb">
+           当前位置：<span>人事管理-出差申请</span>
+       </h3>
+       <div class="box">
+           <div class="opera-box" id="select">
+               <span class="tit">项目名称：</span> <input type="text"
+                   class="form-control" id="projectName" /> 
+                   <span class="tit">开始时间：</span>
+                  <input type="text" class="form-control datepicker" name="startDate" id="startDate" required maxlength="50" style="width:auto;display:inline-block;" />
+                   <!--  <input type="text" class="form-control" id="startTime" />  -->
+                   <span class="tit">结束时间：</span> 
+                  <input type="text" class="form-control datepicker" name="endDate" id="endDate" required maxlength="50" style="width:auto;display:inline-block;" />
+                   <span class="tit">状态：</span> 
+                   <!-- <input type="text" class="form-control" id="status" /> -->
+                   <select class = "form-control" name="status" id="status" required>
+                               <option value="">全部</option>
+                               <option value="draft">草稿</option>
+                               <option value="inProgress">审核中</option>
+                               <option value="recal">已撤退</option>
+                               <option value="complete">审核完成</option>
+                           </select>
+                           <div class="opera-box">
+				<span class="tit">出差类型：</span> 
+				<select class = "form-control" name="evectionType" id="evectionType" required>
+					<option value="">全部</option>
+					<option value="001">项目出差</option>
+					<option value="002">会议出差</option>
+				</select>
+			</div>
+                           <div class="opera-box">
+                           <div class="pull-right">
+                   <a class="btn btn-default btn-query" id="searchBtn"><i class="icon fa fa-search"></i> 查 询</a>
+                   <a class="btn btn-default btn-add" data-toggle="modal"
+                       data-target="#addModal" id="addLink">申请出差</a> <a
+                       class="btn btn-default btn-del" id="delSelect"><i class="icon fa fa-trash-o"></i> 删 除</a>
+               </div>
+               </div>
+           </div>
+           <div class="table-box">
+               <table class="table table-bordered" id="table">
+                   <thead>
+                       <tr>
+                           <th><input type="checkbox" id="selectAll" /></th>
+                           <th>序号</th>
+                            <th>出差事由</th>
+                           <th>出差类型</th>
+                           <th>项目名称</th>
+                         <!--   <th>申请人</th> -->
+                           <th>出差人</th>
+                           <th>开始时间</th>
+                           <th>结束时间</th>
+                           <th>创建时间</th>
+                           <th>状态</th>
+                           <th>操作</th>
+                       </tr>
+                   </thead>
+                   <tbody>
+                   </tbody>
+               </table>
+           </div>
+       </div>
+ 
+   <div id="delModal" class="modal fade del-modal" tabindex="-1"
+       role="dialog">
+       <div class="modal-dialog" role="document">
+           <div class="modal-content">
+               <div class="modal-header">
+                   <button type="button" class="close" data-dismiss="modal"
+                       aria-label="Close">
+                       <span aria-hidden="true">&times;</span>
+                   </button>
+                   <h4 class="modal-title">删除信息</h4>
+               </div>
+               <div class="modal-body">
+                   <i class="del-warn"></i>确定删除吗？删除后将无法恢复！
+               </div>
+               <div class="modal-footer">
+                   <button type="button" class="btn btn-primary" id="delBtn">确定</button>
+                   <button type="button" class="btn btn-default" data-dismiss="modal"><i class="icon fa fa-times"></i> 取消</button>
+               </div>
+           </div>
+       </div>
+   </div>
+   <div id="alertModal" class="modal fade del-modal" tabindex="-1"
+       role="dialog">
+       <div class="modal-dialog" role="document">
+           <div class="modal-content">
+               <div class="modal-header">
+                   <button type="button" class="close" data-dismiss="modal"
+                       aria-label="Close">
+                       <span aria-hidden="true">&times;</span>
+                   </button>
+                   <h4 class="modal-title">提示</h4>
+               </div>
+               <div class="modal-body">
+                   <i class="del-warn"></i>请选择希望删除的数据。
+                   
+               </div>
+               <div class="modal-footer">
+                   <button type="button" class="btn btn-primary" data-dismiss="modal">确定</button>
+               </div>
+           </div>
+       </div>
+   </div>
+        <div id="graphModal" class="modal fade start-modal" tabindex="-1"
+       role="dialog"  style="width:900px">
+       <div class="modal-dialog" role="document">
+           <div class="modal-content">
+               <div class="modal-header"  style="width:900px">
+                   <button type="button" class="close" data-dismiss="modal"
+                       aria-label="Close">
+                       <span aria-hidden="true">&times;</span>
+                   </button>
+                   <h4 class="modal-title">详情</h4>
+               </div>
+               <div class="modal-body">
+                   <img src="activiti/graph.jsp?businessKey=" id="graphImg">
+               </div>
+               <div class="modal-footer">
+                   <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+               </div>
+           </div>
+       </div>
+   </div> 
+       <div id="errorModal" class="modal fade del-modal" tabindex="-1"
+       role="dialog">
+       <div class="modal-dialog" role="document">
+           <div class="modal-content">
+               <div class="modal-header">
+                   <button type="button" class="close" data-dismiss="modal"
+                       aria-label="Close">
+                       <span aria-hidden="true">&times;</span>
+                   </button>
+                   <h4 class="modal-title">提示</h4>
+               </div>
+               <div class="modal-body">
+                   <i class="del-warn"></i>
+                   <table  style="margin-left:36%;">
+                   <tbody id="tbody" >
+                                
+                            </tbody >
+                   </table>
+                     
+               </div>
+               <div class="modal-footer">
+                   <button type="button" class="btn btn-primary" data-dismiss="modal">确定</button>
+               </div>
+           </div>
+       </div>
+   </div>
+   <div id="addModal" class="modal fade add-modal" tabindex="-1"
+       role="dialog">
+       <div class="modal-dialog" role="document">
+           <div class="modal-content" style="width:600px">
+               <div class="modal-header">
+                   <button type="button" class="close" data-dismiss="modal"
+                       aria-label="Close">
+                       <span aria-hidden="true">&times;</span>
+                   </button>
+                   <h4 class="modal-title">新增信息</h4>
+               </div>
+               <div class="modal-body">
+                   <form id="addForm">
+                    <input type="hidden" name="id" id="id">
+                      <div class="form-box">
+                           <span class="tit">出差类型：</span> 
+                           <select class = "form-control" name="type"   id="type" required>
+                               <option value="001">项目出差</option>
+                               <option value="002">会议出差</option>
+                           </select>
+                       </div>
+                       <div class="form-box" id="proj">
+                          <span class="tit">
+                       <i class="icon fa fa-asterisk red smaller-70"></i>
+                                                               项目名称：</span> 
+                           <label for="addProjectName" style="display:none"></label>
+                            <input type="text" id="addProjectName" class="form-control" name="projectName" maxlength="50"  required/>
+                       </div>
+                       <div class="form-box" id="organize">
+                           <span class="tit">出差组织：</span>
+                       <label><input type="radio" id="team" name="organ" value="team" >团体</label>
+                        <label><input type="radio" id="personal" name="organ" value="personal" checked>个人</label>
+                       </div>
+                        <div hidden="hidden" class="form-box"  id="showUsers">
+                           <span class="tit">出差人：</span>
+                           <select multiple="multiple"
+							name="evectionUsers" id="evectionUsers"	style="width: 330px;" required>
+							</select>
+                       </div>
+                       <div class="form-box">
+                       <span class="tit">
+                       <i class="icon fa fa-asterisk red smaller-70"></i>
+                                                               出差事由：</span> 
+                           <input type="text"
+                               class="form-control" name="reason" placeholder="请输入出差事由"
+                               required maxlength="20" />
+                       </div>
+                         
+                       <div class="form-box">
+                           <span class="tit"><i class="icon fa fa-asterisk red smaller-70"></i>出发地：</span>
+                               <input type="text" class="form-control" name="departure" placeholder="请输入出发地"
+                           required maxlength="50"/>
+                       </div>
+                       <div class="form-box">
+                           <span class="tit"> <i class="icon fa fa-asterisk red smaller-70"></i>目的地：</span> 
+                           <input type="text" class="form-control" name="destination" placeholder="请输入目的地"
+                           required maxlength="50"/>
+                       </div>
+                    
+                       <div class="form-box">
+                           <span class="tit"> <i class="icon fa fa-asterisk red smaller-70"></i>开始时间：</span>
+                           <input type="text" class="form-control datepicker" name="startDate" placeholder="请输入开始时间" id="add_startDate" required maxlength="50" style="width:330px;display:inline-block;" />
+                       </div>
+                           <div class="form-box">
+                           <span class="tit"> <i class="icon fa fa-asterisk red smaller-70"></i>结束时间：</span>
+                                <input type="text" class="form-control datepicker" name="endDate" placeholder="请输入开始时间" id="add_endtDate" required maxlength="50" style="width:330px;display:inline-block;" />
+                       </div>
+                       <div class="form-box">
+                           <span class="tit">备注：</span>
+                           <textarea rows="2" class="form-control" name="descn" placeholder="请输入备注"
+                           maxlength="50" ></textarea>
+                       </div>
+                      <!--  <div class="form-box">
+                           <span class="tit" id="add_approvalName">审批人：</span>
+                           <select class = "form-control" name="approval" id="add_approval" >
+                           </select>
+                       </div> -->
+                       <span id="addErrorMessage" style="color:red"></span>
+                   </form>
+               </div>
+               <div class="modal-footer">
+                   <button type="button" class="btn btn-primary" id="addSaveBtn"><i class="icon fa fa-save"></i> 保存</button>
+                   <button type="button" class="btn btn-default" data-dismiss="modal"><i class="icon fa fa-times"></i> 取消</button>
+               </div>
+           </div>
+       </div>
+   </div>
+   
+       <div id="startModal" class="modal fade start-modal" tabindex="-1"
+       role="dialog">
+       <div class="modal-dialog" role="document">
+           <div class="modal-content">
+               <div class="modal-header">
+                   <button type="button" class="close" data-dismiss="modal"
+                       aria-label="Close">
+                       <span aria-hidden="true">&times;</span>
+                   </button>
+                   <h4 class="modal-title">提示信息</h4>
+               </div>
+               <div class="modal-body">
+                   <i class="del-warn"></i>提交出差申请。
+               </div>
+               <div class="modal-footer">
+                   <button type="button" class="btn btn-primary" id="startBtn">确定</button>
+                   <button type="button" class="btn btn-default" data-dismiss="modal"><i class="icon fa fa-times"></i> 取消</button>
+               </div>
+           </div>
+       </div>
+   </div>
+       <div id="withdrawModal" class="modal fade withdraw-modal" tabindex="-1"
+       role="dialog">
+       <div class="modal-dialog" role="document">
+           <div class="modal-content">
+               <div class="modal-header">
+                   <button type="button" class="close" data-dismiss="modal"
+                       aria-label="Close">
+                       <span aria-hidden="true">&times;</span>
+                   </button>
+                   <h4 class="modal-title">提示信息</h4>
+               </div>
+               <div class="modal-body">
+                   <i class="del-warn"></i>撤销出差申请。
+               </div>
+               <div class="modal-footer">
+                   <button type="button" class="btn btn-primary"  id="withdrawBtn">确定</button>
+                   <button type="button" class="btn btn-default" data-dismiss="modal"><i class="icon fa fa-times"></i> 取消</button>
+               </div>
+           </div>
+       </div>
+   </div>
+</div>    
+

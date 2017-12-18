@@ -1,0 +1,47 @@
+<script src="../../js/inner/bid.js"></script>
+<div class="expert-body">
+		<h3 class="m-crumb">
+			当前位置：<span>项目管理-投标管理</span>
+		</h3>
+		<div class="box">
+			<div class="opera-box">
+				<span class="tit">项目名称：</span>
+					<input type="text" class="form-control" id="projectName" /> 
+				<span class="tit">投标时间：</span>
+					<input type="text" class="form-control datepicker" id="bidDate1"/>
+				<span class="tit">至：</span>
+					<input type="text" class="form-control datepicker" id="bidDate2"/>
+				<span class="tit">中标时间：</span>
+					<input type="text" class="form-control datepicker" id="winBidDate1"/>
+				<span class="tit">至：</span>
+				<input type="text" class="form-control datepicker" id="winBidDate2"/>
+			</div>
+			<div class="opera-box" style="margin-top: 5px;">
+				<div class="pull-right">
+					<a class="btn btn-default btn-query" id="searchBtn"><i class="icon fa fa-search"></i> 查 询</a>
+					<!-- 
+					<a class="btn btn-default btn-add" data-toggle="modal" data-target="#addModal" id="addLink"><i class="icon fa fa-plus"></i> 新 增</a> 
+					<a class="btn btn-default btn-del" id="delSelect"><i class="icon fa fa-trash-o"></i> 删 除</a>
+					 -->
+				</div>
+			</div>
+			<div class="table-box">
+				<table class="table table-bordered" id="table">
+					<thead>
+						<tr>
+							<th>序号</th>
+							<th>项目名称</th>
+							<th>客户名称</th>
+							<th>投标时间</th>
+							<th>保证金</th>
+							<th>创建时间</th>
+							<th>操作</th>
+						</tr>
+					</thead>
+					<tbody>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	
+</div>	

@@ -1,0 +1,51 @@
+<script src="../../js/inner/personnel.js"></script>
+<link rel="stylesheet" href="../../css/find.css">
+<div class="expert-body">
+	<h3 class="m-crumb">
+		当前位置：<span>项目管理 - 人员概览</span>
+	</h3>
+	<div class="box">
+		<div class="opera-box">
+			<span class="tit">姓名：</span>
+				<input type="text" class="form-control" id="displayName" />
+			<span class="tit">部门:</span>
+				<select id="deptId" class="form-control"></select>
+			<span class="tit">职务:</span>
+				<select id="positionName" class="form-control"></select>
+			<span class="tit">是否出差:</span>
+				<select id="travel" class="form-control">
+					<option value="全部">全部</option>
+					<option value="是">是</option>
+					<option value="否">否</option>
+				</select>
+			<span class="tit">是否休假:</span>
+				<select id="leave" class="form-control">
+					<option value="全部">全部</option>
+					<option value="是">是</option>
+					<option value="否">否</option>
+				</select>
+		</div>
+		<div class="opera-box">
+				<div class="pull-right">
+					<a class="btn btn-default btn-query" onclick="refreshList()"><i class="icon fa fa-search"></i> 查 询</a>
+				</div>
+			</div>
+		<div class="table-box">
+				<table class="table table-bordered" id="table">
+					<thead>
+						<tr>
+							<th>成员名称</th>
+							<th>负责项目</th>
+							<th>参与项目</th>
+							<th>是否休假</th>
+							<th>是否出差</th>
+							<th>出差地点</th>
+							<th>出差周期时间</th>
+						</tr>
+					</thead>
+					<tbody>
+					</tbody>
+				</table>
+			</div>
+	</div>
+</div>

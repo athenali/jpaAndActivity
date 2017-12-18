@@ -1,0 +1,229 @@
+
+<script src="../../js/multiple-select.js"></script>
+<link rel="stylesheet" href="../../css/multiple-select.css">
+<div>
+		<h3 class="m-crumb">
+			当前位置：<span>进度管理-项目列表-进度管理</span>
+		</h3>
+		<div class="box">
+			<div class="" style="">
+				<span>任务文件：</span>
+				<span id="RwFile" >无</span>
+			</div>
+			
+			<div class="opera-box">
+				<div class="pull-right">
+					<a class="btn btn-default btn-query" id="searchBtn"><i class="icon fa fa-search"></i> 查 询</a>
+					<a class="btn btn-default btn-add" data-toggle="modal" data-target="#addModal" id="addLink" style="display: none;"><i class="icon fa fa-plus"></i> 新 增</a> 
+					<a class="btn btn-default" onclick="back()"><i class="icon fa fa-reply"></i> 返 回</a>
+				</div>
+			</div>
+			
+			<div class="table-box">
+				<table class="table table-bordered" id="table">
+					<thead>
+						<tr>
+							<th>序号</th>
+							<th>任务名称</th>
+							<th>任务类型</th>
+							<th>项目名称</th>
+							<th>完成情况</th>
+							<th>开始时间</th>
+							<th>更新时间</th>
+							<th>结束时间</th>
+							<th>操作</th>
+						</tr>
+					</thead>
+					<tbody>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+	
+	
+	<div id="delModal" class="modal fade del-modal" tabindex="-1"
+		role="dialog">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title">删除信息</h4>
+				</div>
+				<div class="modal-body">
+					<i class="del-warn"></i>确定删除吗？删除后将无法恢复！
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" id="delBtn">确定</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal"><i class="icon fa fa-times"></i> 取消</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="alertModal" class="modal fade del-modal" tabindex="-1"
+		role="dialog">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title">提示</h4>
+				</div>
+				<div class="modal-body">
+					<i class="del-warn"></i>请选择希望删除的数据。
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" data-dismiss="modal">确定</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="addModal" class="modal fade add-modal" tabindex="-1"
+		role="dialog">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title">新增信息</h4>
+				</div>
+				<div class="modal-body">
+					<form id="addForm">
+					<input type="hidden" name="projectId"><!-- 项目Id，项目负责人，项目状态 -->
+					<input type="hidden" name="projectName">
+					<input type="hidden" name="projectStatus">
+					<input type="hidden" name="projectManager">
+					<input type="hidden" name="userId"><!-- 负责人 -->
+					<input type="hidden" name="userName">
+					<input type="hidden" name="status" value="未开始"><!-- 任务状态和完成情况默认都为空 -->
+					<input type="hidden" name="executorId">
+					<input type="hidden" name="executorName">
+					
+						<div class="form-box">
+							<span class="tit"><i class="icon fa fa-asterisk red smaller-70"></i>任务名称：</span> 
+							<input type="text" class="form-control" name="name" placeholder="请输入任务名称"
+								required maxlength="100" />
+						</div>
+						<div class="form-box">
+							<span class="tit"><i class="icon fa fa-asterisk red smaller-70"></i>任务类型：</span>
+							<select name="type" required class="form-control">
+								<option value="出差调研">出差调研</option>
+								<option value="编写初稿">编写初稿</option>
+								<option value="编写终稿">编写终稿</option>
+							</select>
+						</div>
+						<div class="form-box diaoyan">
+							<span class="tit"><i class="icon fa fa-asterisk red smaller-70"></i>目的地：</span> 
+							<input type="text" class="form-control" name="dest" required/>
+						</div>
+						<div class="form-box">
+							<span class="tit"><i class="icon fa fa-asterisk red smaller-70"></i>开始时间：</span> 
+							<input type="text" class="form-control datepicker" name="startDate" required readonly maxlength="50"/>
+						</div>
+						<div class="form-box">
+							<span class="tit"><i class="icon fa fa-asterisk red smaller-70"></i>结束时间：</span> 
+							<input type="text" class="form-control datepicker" name="endDate" required readonly maxlength="50"/>
+						</div>
+						<div class="form-box">
+							<span class="tit"><i class="icon fa fa-asterisk red smaller-70"></i>任务执行人：</span>
+							<select id="executorSelecte" style="width: 330px;">
+							</select>
+               			</div>
+						<div class="form-box diaoyan">
+							<span class="tit">其他人员：</span>
+							<input type="text" class="form-control" name="otherpeople"/>
+						</div>
+						<div class="form-box">
+							<span class="tit">任务详情：</span> 
+							<textarea rows="2" class="form-control" name="content" placeholder="请输入备注" maxlength="200"></textarea>
+						</div>
+						<span id="addErrorMessage" style="color:red"></span>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" id="addSaveBtn"><i class="icon fa fa-save"></i> 保存</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal"><i class="icon fa fa-times"></i> 取消</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="editModal" class="modal fade edit-modal" tabindex="-1" role="dialog">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title">编辑信息</h4>
+				</div>
+				<div class="modal-body">
+					<form id="editForm">
+					<input type="hidden" name="id">
+					<input type="hidden" name="projectId"><!-- 项目Id，项目负责人，项目状态 -->
+					<input type="hidden" name="projectName">
+					<input type="hidden" name="projectStatus">
+					<input type="hidden" name="projectManager">
+					<input type="hidden" name="userId"><!-- 负责人 -->
+					<input type="hidden" name="userName">
+					<input type="hidden" name="executorId">
+					<input type="hidden" name="executorName">
+					
+						<div class="form-box">
+							<span class="tit"><i class="icon fa fa-asterisk red smaller-70"></i>任务名称：</span> 
+							<input type="text" class="form-control" name="name" placeholder="请输入任务名称"
+								required maxlength="100" />
+						</div>
+						<div class="form-box">
+							<span class="tit"><i class="icon fa fa-asterisk red smaller-70"></i>任务类型：</span>
+							<select name="type" required class="form-control">
+								<option value="出差调研">出差调研</option>
+								<option value="编写初稿">编写初稿</option>
+								<option value="编写终稿">编写终稿</option>
+							</select>
+						</div>
+						<div class="form-box diaoyan">
+							<span class="tit"><i class="icon fa fa-asterisk red smaller-70"></i>目的地：</span> 
+							<input type="text" class="form-control" name="dest" required/>
+						</div>
+						<div class="form-box">
+							<span class="tit"><i class="icon fa fa-asterisk red smaller-70"></i>开始时间：</span> 
+							<input type="text" class="form-control datepicker" name="startDate" required readonly maxlength="50"/>
+						</div>
+						<div class="form-box">
+							<span class="tit"><i class="icon fa fa-asterisk red smaller-70"></i>结束时间：</span> 
+							<input type="text" class="form-control datepicker" name="endDate" required readonly maxlength="50"/>
+						</div>
+						<div class="form-box">
+							<span class="tit"><i class="icon fa fa-asterisk red smaller-70"></i>任务执行人：</span>
+							<select id="executorSelecte2" required style="width: 330px;">
+							</select>
+               			</div>
+               			<div class="form-box diaoyan">
+							<span class="tit">其他人员：</span>
+							<input type="text" class="form-control" name="otherpeople"/>
+						</div>
+						<div class="form-box">
+							<span class="tit">任务详情：</span> 
+							<textarea rows="2" class="form-control" name="content" placeholder="请输入备注" maxlength="200"></textarea>
+						</div>
+						<span id="editErrorMessage" style="color:red"></span>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" id="editSaveBtn"><i class="icon fa fa-save"></i> 保存</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal"><i class="icon fa fa-times"></i> 取消</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+</body>
+<script src="../../js/inner/task.js"></script>

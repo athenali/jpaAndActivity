@@ -1,0 +1,68 @@
+<script src="../../js/inner/leave-find.js" type="text/javascript"></script>
+<link rel="stylesheet" href="../../css/find.css">
+<style type="text/css">
+	ul > li > input{
+	    border: 0;
+    	outline: none;
+    	width: 280px;
+	}
+	.title{
+		 float: left;
+   		 width: 100px;
+	}
+</style>
+<body class="expert-body">
+	<h4 class="m-crumb">当前位置：<span>人事管理-休假申请</span></h4>
+    <div class="manage_detail">
+        <div class="row clearfix">
+            <div class="page-header">申请信息</div>
+            <form id="leaveFrom">
+            <div class="table">
+			    <ul style="margin-left: 16px;">
+			        <li>
+			           	申请人员：<input name="userName"  readonly/>
+			           	请假事由：<input name="reason"/>
+			           	休假类型：<input name="type"  readonly/>
+			        <br/><br/>
+			        </li>
+			        <li>
+			           	开始时间：<input name="startDate"  readonly/>
+			           	结束时间：<input name="endDate"  readonly/>
+			           	总天数：<input name="day"  readonly/>
+					 <br/><br/>
+			        </li>
+			    </ul>
+			</div>
+			</form>
+		</div>
+        <div class="row clearfix">
+            <div class="page-header">审批信息</div>
+            <div class="table-box">
+                <table class="table table-bordered" id="approvalTable">
+                    <thead>
+						<tr>
+						  <th>处理人</th>
+						    <th>审批节点</th>
+							<th>审批状态</th>
+							<th>审批意见</th>
+							<th>审批时间</th>
+						</tr>
+					</thead>
+					<tbody id="tbody">
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<div class="container">
+	<div class="row clearfix">
+		<div class="col-md-5 column">
+		</div>
+		<div class="col-md-2 column">
+			 <button type="button" class="btn btn-default btn-block btn-inverse"  id="returnBtn">返回</button>
+		</div>
+		<div class="col-md-5 column">
+		</div>
+	</div>
+	</div>
+    </div>
+</body>

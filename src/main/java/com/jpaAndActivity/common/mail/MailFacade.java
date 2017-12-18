@@ -50,6 +50,14 @@ public class MailFacade {
      * @param content 邮件内容
      */
     public void sendHTMLMail(String to , String cc, String subject, String content) {
+    	if(to==null){
+    		logger.info("项目负责人邮箱不存在");
+    		return ;
+    	}
+    	if(to.isEmpty()){
+    		logger.info("项目负责人邮箱不存在");
+    		return ;
+    	}
     	Date date = new Date();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy年MM月dd日 HH:mm");
 		String nowTime = sdf.format(date);

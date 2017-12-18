@@ -1,0 +1,62 @@
+<script src="../../js/inner/doc.js"></script>
+	<div class="expert-body">
+		<h3 class="m-crumb">
+			当前位置：<span>项目管理 - 文档管理</span>
+		</h3>
+		<div class="box">
+			<div class="opera-box">
+				<span class="tit">选择项目：</span>
+					<select id="flag" class="form-control">
+						<option value="">请选择</option>
+						<option value="负责的项目">负责的项目</option>
+						<option value="参与的项目">参与的项目</option>
+					</select>
+				<span class="tit">文档名称：</span>
+					<input type="text" class="form-control" id="name" /> 
+				<span class="tit">文档类别：</span>
+					<select id="catalog" class="form-control">
+						<option value="">请选择</option>
+						<option value="投标文档">投标文档</option>
+						<option value="合同评审文档">合同评审文档</option>
+						<option value="机会进展文档">机会进展文档</option>
+						<option value="需求大纲文档">需求大纲文档</option>
+						<option value="任务计划文档">项目计划文档</option>
+						<option value="结项文档">结项文档</option>
+						<option value="成果文档">成果文档</option>
+					</select>
+				<span class="tit">项目名称：</span>
+					<input type="text" class="form-control" id="projectName" /> 
+			</div>
+			<div class="opera-box">
+				<span class="tit">客户名称：</span>
+					<input type="text" class="form-control" id="customerName" /> 
+				<span class="tit">提交人：</span>
+					<input type="text" class="form-control" id="userName" /> 
+				<span class="tit">创建起止时间：</span>
+					<input type="text" class="form-control" id="rangeDate" style="width:200px"/>
+			</div>
+				
+			<div class="opera-box">
+				<div class="pull-right">
+					<a class="btn btn-default btn-query" id="searchBtn"><i class="icon fa fa-search"></i> 查 询</a>
+				</div>
+			</div>
+			<div class="table-box">
+				<table class="table table-bordered" id="table">
+					<thead>
+						<tr>
+							<th>编号</th>
+							<th>文档名称</th>
+							<th>所属项目</th>
+							<th>所属客户</th>
+							<th>提交人</th>
+							<th>创建时间</th>
+							<th>操作</th>
+						</tr>
+					</thead>
+					<tbody>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>

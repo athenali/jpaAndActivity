@@ -1,0 +1,126 @@
+<script src="../../js/inner/costdetal.js"></script>
+<div class="expert-body">
+	<div>
+		<h3 class="m-crumb">
+			当前位置：<span>人事管理-成本管理-明细查询</span>
+		</h3>
+		<div class="box">
+			<div class="opera-box">
+				<span class="tit"><strong>项目明细:</strong></span>
+				<div class="pull-right">
+					<a class="btn btn-default btn-add" data-toggle="modal" data-target="#addModal" id="addLink"><i class="icon fa fa-plus"></i> 新 增</a> 
+					<a class="btn btn-default" id="backLink"><i class="icon fa fa-reply"></i> 返 回</a>
+				</div>
+			</div>
+			<div class="table-box">
+				<table class="table table-bordered" id="table">
+					<thead>
+						<tr>
+							<th>序号</th>
+							<th>类型</th>
+							<th>金额</th>
+							<th>发生时间</th>
+							<th>填写人</th>
+							<th>费用附件</th>
+							<th>描述</th>
+							<th>操作</th>
+						</tr>
+					</thead>
+					<tbody>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+	<div id="addModal" class="modal fade add-modal" tabindex="-1"
+		role="dialog">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title">新增费用</h4>
+				</div>
+				<div class="modal-body">
+					<form id="addForm" method="post" enctype="multipart/form-data">
+						<div class="form-box">
+							<span class="tit ">费用类型：</span> 
+							<select class = "form-control" name="type" required>
+							</select>
+						</div>
+						<div class="form-box">
+							<span class="tit">费用金额：</span> 
+							<input type="text" onkeyup="onlyNumber(this)" onblur="onlyNumber(this)"  class="form-control" name="price" required maxlength="50"/>
+						</div>
+						<div class="form-box">
+							<span class="tit">发生时间：</span>
+							<input name="time" size="16" type="text" readonly class="form-control form_datetime" style="background-color:white;cursor:default;">
+						</div>
+						<div class="form-box">
+							<span class="tit">费用描述：</span>
+							<textarea rows="2" class="form-control" name="description" placeholder="请输入费用描述" maxlength="200" ></textarea>
+						</div>
+						
+						<!--文件上传需要添加 -->
+						<div class="form-box">
+							<span class="tit">上传附件：</span>
+							<a href="javascript:;" class="a-upload"><input id="File" type="file" name="file" multiple onchange ="oneupload()"/>点击上传文件</a>
+						</div>
+						<div id="FileText">
+						
+						</div>
+						<span id="addErrorMessage" style="color:red"></span>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" id="addSaveBtn"><i class="icon fa fa-save"></i> 保存</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal"><i class="icon fa fa-times"></i> 取消</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="editModal" class="modal fade edit-modal" tabindex="-1"
+		role="dialog">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title">查询费用</h4>
+				</div>
+				<div class="modal-body">
+					<form id="editForm">
+						<div class="form-box">
+							<span class="tit ">费用类型：</span> 
+							<input type="text"  class="form-control" name="type" placeholder="请输入费用金额" readonly maxlength="50"/>
+						</div>
+						<div class="form-box">
+							<span class="tit">费用金额：</span> 
+							<input type="text"  class="form-control" name="price" placeholder="请输入费用金额" readonly maxlength="50"/>
+						</div>
+						<div class="form-box">
+							<span class="tit">发生时间：</span>
+							<input name="time" class="form-control" readonly/>
+						</div>
+						<div class="form-box">
+							<span class="tit">费用附件：</span>
+							<div id="FileText1"></div>
+						</div>
+						<div class="form-box">
+							<span class="tit">费用描述：</span>
+							<textarea rows="2" class="form-control" name="description" placeholder="请输入费用描述" maxlength="200" readonly></textarea>
+						</div>
+						<span id="addErrorMessage" style="color:red"></span>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal"><i class="icon fa fa-times"></i> 取消</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

@@ -41,7 +41,7 @@ public class JPATest {
 		}
 	}
 	/**
-	 * sql实现分页查询
+	 * sql实现分页查询，可以进行多表关联
 	 */
 	@SuppressWarnings("unchecked")
 	@Test
@@ -53,4 +53,5 @@ public class JPATest {
 			System.out.println(userInfoDTO.getUserName()+"++++++++++"+userInfoDTO.getDeptName());
 		}
 	}
+	
 }

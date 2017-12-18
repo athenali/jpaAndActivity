@@ -1,0 +1,878 @@
+html, body {
+    min-height: 100%;
+}
+
+body {
+    font-family: 'Microsoft YaHei UI', 'Microsoft YaHei', DengXian, SimSun, 'Segoe UI', Tahoma, Helvetica, sans-serif;
+    background-color: #fafafa;
+}
+
+.btn {
+    border-radius: 0;
+    padding: 5px 12px;
+    outline: none;
+}
+
+.btn.btn-query {
+    background-color: #f0f1f3;
+}
+
+.btn.btn-add {
+    background-color: #4b94c0;
+    color: #fff;
+    border: 1px solid #4b94c0;
+}
+
+.btn.btn-add:hover {
+    background-color: #1e79b0;
+    color: #fff;
+    border: 1px solid #1e79b0;
+}
+
+.btn.btn-del {
+    background-color: #f10808;
+    color: #fff;
+    border: 1px solid #f10808;
+}
+
+.btn.btn-del:hover {
+    background-color: #dd1414;
+    color: #fff;
+    border: 1px solid #dd1414;
+}
+
+.pagination > li:first-child > a, .pagination > li:first-child > span, .pagination > li:last-child > a, .pagination > li:last-child > span {
+    border-radius: 0;
+}
+
+.icon {
+    margin-right: 2px;
+    text-align: center;
+}
+.smaller-70 {
+    font-size: 70% !important;
+}
+.red {
+    color: #DD5A43 !important;
+}
+.ml-10 {
+    margin-left: 10px;
+}
+
+.modal-header {
+    padding: 14px 15px;
+}
+
+.modal-title {
+    font-size: 14px;
+}
+
+.modal-content {
+    border-radius: 0;
+}
+
+.modal-footer {
+    border-top: none;
+    text-align: center;
+    padding-bottom: 28px;
+}
+
+.modal-footer .btn {
+    font-size: 12px;
+    padding: 6px 22px;
+}
+
+.del-modal .modal-body {
+    text-align: center;
+    padding: 35px 0 20px 0;
+}
+
+.del-modal .modal-body .del-warn {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    background: url("../img/img01.png") no-repeat center center;
+    vertical-align: middle;
+    margin-right: 25px;
+}
+
+.del-modal .modal-dialog {
+    width: 400px;
+}
+.add-modal .modal-dialog,.edit-modal .modal-dialog {
+    width: 525px;
+}
+.add-modal .modal-body .form-box,.edit-modal .modal-body .form-box{
+    margin-bottom: 15px;
+}
+
+.add-modal .modal-body .form-box .tit,.edit-modal .modal-body .form-box .tit {
+    width: 110px;
+    text-align: right;
+    display: inline-block;
+    vertical-align: middle;
+    font-size:12px;
+}
+.add-modal .modal-body .form-box label,.edit-modal .modal-body .form-box label{
+    font-weight: normal;
+    margin: 0 10px 0 0;
+    font-size:12px;
+}
+.add-modal .modal-body .form-box input[type="radio"],.edit-modal .modal-body .form-box input[type="radio"]{
+    margin: 0 5px 0 0;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.add-modal .modal-body .form-box .form-control,.edit-modal .modal-body .form-box .form-control {
+    display: inline-block;
+    width: 330px;
+    height: 30px;
+    border-radius: 0;
+    vertical-align: middle;
+    font-size:12px;
+}
+.add-modal .modal-body .form-box textarea.form-control,.edit-modal .modal-body .form-box textarea.form-control{
+    height: auto;
+}
+.add-modal .modal-body,.edit-modal .modal-body{
+    padding: 25px 15px 15px 15px;
+}
+.add-modal .modal-footer,.edit-modal .modal-footer{
+    padding: 0 15px 15px 15px;
+}
+
+/***********登录页开始***********/
+.login-body {
+    background: url(../img/login_bg.jpg) center bottom no-repeat;
+}
+
+.login-body .login-box {
+    position: fixed;
+    top: 45%;
+    left: 50%;
+    width: 476px;
+    height: 346px;
+    margin-left: -238px;
+    margin-top: -188px;
+}
+
+.login-body .login-box .logo {
+    width: 476px;
+    height: 41px;
+    margin: 0 auto;
+    background: url(../img/logo.png) center center no-repeat;
+}
+
+.login-body .login-box .input-box {
+    width: 300px;
+    height: 270px;
+    padding-top: 48px;
+    margin: 0 auto;
+    margin-top: 34px;
+    border: 1px solid #8cb7c9;
+    border-radius: 4px;
+    background-color: #18698c;
+}
+
+.login-body .login-box .username-box, .login-body .login-box .password-box {
+    width: 218px;
+    position: relative;
+    margin: 0 auto;
+    margin-bottom: 10px;
+}
+
+.login-body .login-box input {
+    height: 40px;
+    border-radius: 0;
+    padding-left: 50px;
+}
+
+.login-body .login-box .username-box input {
+    background: url(../img/user_icon.png) -1px -1px no-repeat #fff;
+}
+
+.login-body .login-box .password-box input {
+    background: url(../img/password_icon.png) -1px -1px no-repeat #fff;
+}
+
+.login-body .login-box .btn-login {
+    display: block;
+    width: 218px;
+    margin: 0 auto;
+    margin-top: 30px;
+    padding: 7px 12px 6px 12px;
+    background-color: #01baff;
+    color: #fff;
+    font-size: 18px;
+    text-align: center;
+    text-decoration: none;
+}
+
+.login-body .login-box .btn-login:hover {
+    background-color: #08a8e3;
+}
+
+.login-body .login-box .info {
+    float: left;
+    color: red;
+    margin-top: 3px;
+    margin-left: 40px;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 12px;
+}
+
+/***********登录页结束***********/
+/*头部开始*/
+.m-header {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 60px;
+    width: 100%;
+    z-index: 999;
+    background: url("../img/logo02.png") no-repeat 20px center #e4e6e9;
+    padding-left: 320px;
+}
+
+.m-header .option-area {
+    margin: 0 0 0 70px;
+    display: inline-block;
+}
+
+.m-header .option-area li {
+    padding: 0 28px;
+}
+
+.m-header .option-area a {
+    display: block;
+    color: #22325a;
+    text-decoration: none;
+    font-size: 18px;
+    text-align: center;
+    height: 60px;
+    line-height: 60px;
+}
+
+.m-header .info {
+    margin: 0 20px 0 0;
+    list-style: none;
+}
+
+.m-header .info > li {
+    position: relative;
+}
+
+.m-header .info > li > a {
+    font-size: 16px;
+    color: #333;
+    line-height: 60px;
+    min-width: 80px;
+    display: block;
+    text-decoration: none;
+    text-align: center;
+    position: relative;
+}
+
+.m-header .info > li > a .info-arrow {
+    display: inline-block;
+    width: 0;
+    height: 0;
+    margin-left: 7px;
+    vertical-align: 2px;
+    border-top: 6px dashed;
+    border-top: 6px solid \9;
+    border-right: 5px solid transparent;
+    border-left: 5px solid transparent;
+}
+
+.m-header .info li .admin-set {
+    display: none;
+    cursor: pointer;
+    position: absolute;
+    top: 60px;
+    right: 10px;
+    text-align: center;
+    padding-top: 10px;
+}
+
+.m-header .info li ul {
+    list-style: none;
+    width: 120px;
+    background-color: #fff;
+    font-size: 15px;
+    border-color: #ddd;
+    position: relative;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 3px;
+}
+
+.m-header .info li:hover > .admin-set {
+    display: block;
+}
+
+.m-header .info li ul li a {
+    color: #0c61a5;
+    border-bottom-color: transparent;
+    display: block;
+    padding: 8px;
+    text-decoration: none;
+}
+
+.m-header .info li ul li a:hover {
+    background-color: #f2f2f2;
+    color: #0c61a5;
+}
+
+.m-header .info li ul:after,
+.m-header .info li ul:before {
+    border-color: transparent;
+    border-style: dashed dashed solid;
+    border-width: 0 8px 8px;
+    content: "";
+    display: block;
+    height: 0;
+    right: 10px;
+    pointer-events: none;
+    position: absolute;
+    top: -8px;
+    width: 0;
+    z-index: 1;
+}
+
+.m-header .info li ul:before {
+    border-bottom-color: #ddd;
+    top: -8px;
+}
+
+.m-header .info li ul:after {
+    border-bottom-color: #fff;
+    top: -7px;
+}
+
+.m-header .user-img {
+    display: block;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    margin-top: 17px;
+}
+
+/*头部结束*/
+/*左侧菜单开始*/
+.m-menu {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    top: 60px;
+    background-color: #fff;
+    width: 200px;
+    border-right: 1px solid #dddede;
+}
+
+.m-menu .menus {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: auto;
+}
+
+.m-menu .menus > dl {
+    margin-bottom: 0;
+    overflow: hidden;
+    -webkit-transition: height 0.3s;
+    -moz-transition: height 0.3s;
+    -ms-transition: height 0.3s;
+    -o-transition: height 0.3s;
+    transition: height 0.3s;
+    width: 199px;
+    height: 36px;
+    border-bottom: 1px solid #dddede;
+    background: url("../img/line02.jpg") repeat-x left top;
+}
+
+.m-menu .menus > dl.home dt {
+    background-image: url("../img/icon01.png");
+}
+
+.m-menu .menus > dl.home.active dt {
+    background-image: url("../img/icon01-hover.png");
+}
+
+.m-menu .menus > dl.pro-man dt {
+    background-image: url("../img/icon02.png");
+}
+
+.m-menu .menus > dl.pro-man.active dt {
+    background-image: url("../img/icon02-hover.png");
+}
+
+.m-menu .menus > dl.customer-man dt {
+    background-image: url("../img/icon03.png");
+}
+
+.m-menu .menus > dl.customer-man.active dt {
+    background-image: url("../img/icon03-hover.png");
+}
+
+.m-menu .menus > dl.pend-approval dt {
+    background-image: url("../img/icon04.png");
+}
+
+.m-menu .menus > dl.pend-approval.active dt {
+    background-image: url("../img/icon04-hover.png");
+}
+
+.m-menu .menus > dl.statistical-form dt {
+    background-image: url("../img/icon05.png");
+}
+
+.m-menu .menus > dl.statistical-form.active dt {
+    background-image: url("../img/icon05-hover.png");
+}
+
+.m-menu .menus > dl.personnel-finance dt {
+    background-image: url("../img/icon06.png");
+}
+
+.m-menu .menus > dl.personnel-finance.active dt {
+    background-image: url("../img/icon06-hover.png");
+}
+
+.m-menu .menus > dl.sys-man dt {
+    background-image: url("../img/icon07.png");
+}
+
+.m-menu .menus > dl.sys-man.active dt {
+    background-image: url("../img/icon07-hover.png");
+}
+
+.m-menu .menus > dl > dt {
+    position: relative;
+    font-weight: normal;
+    padding-left: 50px;
+    cursor: pointer;
+    background-position: 18px center;
+    background-repeat: no-repeat;
+    height: 36px;
+    line-height: 36px;
+    font-size: 16px;
+}
+
+.m-menu .menus > dl.active {
+    background: url("../img/line01.jpg") repeat-x left top;
+    height:auto;
+}
+
+.m-menu .menus > dl.active dt {
+    color: #1e79b0;
+}
+
+.m-menu .menus > dl > dt > i {
+    position: absolute;
+    top: 13px;
+    width: 6px;
+    height: 10px;
+    right: 12px;
+    background: url(../img/right.png) center center no-repeat;
+}
+
+.m-menu .menus > dl.active > dt > i {
+    width: 10px;
+    height: 6px;
+    top: 15px;
+    right: 12px;
+    background: url(../img/down.png) center center no-repeat;
+}
+
+.m-menu .menus > dl > dd {
+    margin: 0;
+    padding-left: 50px;
+    cursor: pointer;
+    height: 36px;
+    line-height: 36px;
+}
+
+.m-menu .menus > dl > dd:hover, .m-menu .menus > dl > dd.active {
+    background-color: #1e79b0;
+    color:#fff;
+}
+
+/*左侧菜单结束*/
+/*主体内容开始*/
+.m-content {
+    position: absolute;
+    left: 200px;
+    top: 60px;
+    right: 0;
+    bottom: 0;
+    overflow-y: auto;
+}
+
+/*主体内容结束*/
+/*面包屑组件开始*/
+.m-crumb {
+    margin: 0;
+    font-size: 12px;
+    background-color: #fff;
+    height: 36px;
+    line-height: 36px;
+    padding-left: 15px;
+    font-weight: normal;
+    border-bottom: 1px solid #dddede;
+    color: #222;
+}
+
+/*面包屑组件结束*/
+/*我的工作台主界面开始*/
+.index-body .box {
+    padding: 20px;
+}
+
+.index-body .tit-box {
+    margin: 0 -10px 0 -10px;
+}
+
+.index-body .tit-box .col-xs-4 {
+    padding: 0 10px;
+}
+
+.index-body .tit-box .col-xs-4 > div {
+    position: relative;
+    height: 150px;
+    border: 1px solid #ebebeb;
+    box-shadow: 0 2px 1px #eee;
+    background-color: #fff;
+}
+.index-body .tit-box .col-xs-3 > div {
+    position: relative;
+    height: 150px;
+    border: 1px solid #ebebeb;
+    box-shadow: 0 2px 1px #eee;
+    background-color: #fff;
+}
+.index-body .tit-box .col-xs-12 > div {
+    position: relative;
+    height: 150px;
+    border: 1px solid #ebebeb;
+    box-shadow: 0 2px 1px #eee;
+    background-color: #fff;
+}
+
+.index-body .tit-box .col-xs-4 > div i {
+    position: absolute;
+    top: 50px;
+    right: 40px;
+}
+
+.index-body .tit-box .col-xs-4 > div h3 {
+    margin: 0;
+    padding: 10px 0 0 40px;
+    font-size: 18px;
+}
+
+.index-body .tit-box .col-xs-4 > div .num {
+    padding: 40px 0 0 40px;
+    font-size: 24px;
+    color: #eb7700;
+}
+
+.index-body .tit-box .pro i {
+    width: 50px;
+    height: 50px;
+    background: url("../img/img02.png") no-repeat center center;
+}
+
+.index-body .tit-box .ser i {
+    width: 47px;
+    height: 47px;
+    background: url("../img/img03.png") no-repeat center center;
+}
+
+.index-body .tit-box .know i {
+    width: 73px;
+    height: 51px;
+    background: url("../img/img04.png") no-repeat center center;
+}
+
+.index-body .pro-box {
+    margin-top: 20px;
+    border: 1px solid #ebebeb;
+    box-shadow: 0 2px 1px #eee;
+    background-color: #fff;
+}
+
+.index-body .pro-box .nav-tabs {
+    border-bottom: none;
+    background-color: #f0f1f3;
+}
+
+.index-body .pro-box .nav-tabs > li {
+    position: relative;
+    padding: 0 10px;
+}
+
+.index-body .pro-box .nav-tabs > li:after {
+    content: '';
+    position: absolute;
+    top: 12px;
+    left: 0;
+    background-color: #dfdfdf;
+    width: 1px;
+    height: 16px;
+}
+
+.index-body .pro-box .nav-tabs > li:first-child:after {
+    width: 0;
+}
+
+.index-body .pro-box .nav-tabs > li > a {
+    border-radius: 0;
+    color: #22325a;
+    font-size: 16px;
+    padding: 8px 5px;
+    margin-right: 0;
+}
+
+.index-body .pro-box .nav-tabs > li > a:hover {
+    border-color: transparent;
+    background-color: inherit;
+}
+
+.index-body .pro-box .nav-tabs > li.active > a, .index-body .pro-box .nav-tabs > li.active > a:focus, .index-body .pro-box .nav-tabs > li.active > a:hover {
+    border: 1px solid transparent;
+    border-bottom: 2px solid #3e83e7;
+    background-color: inherit;
+    color: #3e83e7;
+}
+
+.index-body .pro-box .tab-content {
+    padding: 20px 20px 40px 20px;
+}
+
+.index-body .pro-box .tab-content h3 {
+    margin: 0 0 15px 0;
+    font-size: 14px;
+}
+
+.index-body .pro-box .tab-content .table {
+    margin-bottom: 0;
+}
+
+.index-body .pro-box .tab-content .table th, .index-body .pro-box .tab-content .table td {
+    text-align: center;
+}
+
+.index-body .pro-box .tab-content .table td {
+    padding: 19px 8px;
+}
+
+.index-body .pro-box .tab-content .table td ul {
+    margin: 0;
+    padding: 0;
+    display: inline-block;
+    border-radius: 6px;
+    background-color: #eee;
+    overflow: hidden;
+}
+
+.index-body .pro-box .tab-content .table td li {
+    float: left;
+    list-style: none;
+    color: #999;
+    padding: 3px 32px;
+    border-left: 1px solid #fff;
+}
+
+.index-body .pro-box .tab-content .table td li.over {
+    background-color: #1e79b0;
+    color: #fff;
+}
+
+.index-body .pro-box .tab-content .table td li.active {
+    background-color: #ef9233;
+    color: #fff;
+}
+
+.index-body .pro-box .tab-content .table td li:first-child {
+    border-left: none;
+}
+
+.index-body .bot-box {
+    position: relative;
+    height: 390px;
+    margin-top: 20px;
+}
+
+.index-body .bot-box .calendar {
+    position: absolute;
+    width: 592px;
+/*     height: 390px; */
+    left: 0;
+    top: 0;
+    border: 1px solid #ebebeb;
+    box-shadow: 0 2px 1px #eee;
+    background-color: #fff;
+}
+
+.index-body .bot-box .datetimepicker td, .index-body .bot-box .datetimepicker th {
+    width: 42px;
+    height: 42px;
+    line-height: 34px;
+    margin: 2px 20px;
+    display: inline-block;
+}
+
+.index-body .bot-box .datetimepicker th.switch {
+    width: 380px;
+}
+
+.index-body .bot-box .datetimepicker-inline {
+    width: 592px;
+}
+
+.index-body .bot-box .wait-task {
+    position: absolute;
+    left: 612px;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    border: 1px solid #ebebeb;
+    box-shadow: 0 2px 1px #eee;
+    background-color: #fff;
+    padding: 20px;
+}
+
+.index-body .bot-box .wait-task h3 {
+    margin: 0 0 15px 0;
+    font-size: 16px;
+}
+
+.index-body .bot-box .wait-task h3 span {
+    color: #e98b2b;
+}
+
+.index-body .bot-box .wait-task h3 a {
+    font-size: 12px;
+    color: #3e83e7;
+    text-decoration: none;
+}
+
+.index-body .bot-box .wait-task th, .index-body .bot-box .wait-task td {
+    text-align: center;
+}
+
+.index-body .bot-box .wait-task th {
+    background-color: #f0f1f3;
+}
+
+.index-body .bot-box .wait-task td {
+    padding: 10px 8px;
+}
+
+/*我的工作台主界面结束*/
+/*客户管理-专家管理页面开始*/
+.expert-body {
+    background-color: #fff;
+}
+
+.expert-body .box {
+    padding: 5px 20px;
+}
+
+.expert-body .box .opera-box .form-control {
+    display: inline-block;
+    width: 140px;
+    margin-right: 10px;
+    margin-top: 10px;
+    height: 32px;
+    border-radius: 0;
+}
+
+.expert-body .box .table-box {
+    padding-top: 15px;
+}
+
+.expert-body .box .table-box table {
+    margin: 0;
+}
+
+.expert-body .box .table-box th, .expert-body .box .table-box td {
+    text-align: center;
+    vertical-align: middle;
+}
+
+.expert-body .box .table-box th {
+    background-color: #f0f1f3;
+}
+
+.expert-body .box .table-box td a {
+    margin: 0 5px;
+    cursor: pointer;
+}
+
+/*客户管理-专家管理页面结束*/
+
+DIV.datepicker.input-group {
+	display: inline-block;
+	width: 160px;
+	vertical-align: middle;
+}
+
+.opera-box DIV.datepicker.input-group INPUT.form-control {
+	background-color: white;
+	cursor: default;
+	width: 120px;
+	margin-right: 0px;
+}
+
+DIV.datepicker.input-group SPAN.input-group-addon {
+	padding: 7px 8px 8px;
+	border-radius:0px 4px 4px 0px;
+}
+
+/** autocomplete */
+
+.ui-autocomplete.ui-front {
+    z-index: 999999;
+}
+.ui-autocomplete-input{
+	  z-index: 999999;
+}
+
+/*a  upload */
+.a-upload {
+    padding: 4px 10px;
+    line-height: 20px;
+    position: relative;
+    cursor: pointer;
+    color: #888;
+    background: #fafafa;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    display: inline-block;
+    overflow: hidden;
+    *display: inline;
+    *zoom: 1
+}
+
+.a-upload  input {
+    position: absolute;
+    font-size: 100px;
+    right: 0;
+    top: 0;
+    opacity: 0;
+    filter: alpha(opacity=0);
+    cursor: pointer
+}
+
+.a-upload:hover {
+    color: #444;
+    background: #eee;
+    border-color: #ccc;
+    text-decoration: none
+}

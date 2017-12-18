@@ -1,0 +1,65 @@
+<script src="../../js/inner/proj-demand.js"></script>
+<div class="expert-body">
+	<h3 class="m-crumb">
+		当前位置：<span>查询统计 - 项目机会情况统计</span>
+	</h3>
+	<div class="box">
+		<div class="opera-box">
+			<span class="tit">项目名称：</span>
+			 <input type="text" class="form-control" id="proName" />
+			<span class="tit">客户名称：</span>
+			 <input type="text" class="form-control" id="cusName" />
+			<span class="tit">负责人：</span>
+			 <input type="text" class="form-control" id="leader" />
+			<span class="tit">项目分类：</span>
+			<select class="form-control" id="proType" required>
+				<option value="">全部</option>
+				<option value="规划类">规划类</option>
+				<option value="可研项目建议书类">可研,项目建议书类</option>
+				<option value="评估类">评估类</option>
+				<option value="传统咨询项目类">传统咨询项目类</option>
+				<option value="课题类">课题类</option>
+				<option value="海外项目类">海外项目类</option>
+				<option value="标准类">标准类</option>
+				<option value="工业智能制造类">工业智能制造类</option>
+			</select>
+			 <span class="tit">状态：</span>
+			  <select class="form-control" id="status" >
+				<option value="">全部</option>
+				<option>机会终止</option>
+				<option>洽谈中</option>
+				<option>已签订</option>
+			</select>
+		</div>
+		<div class="opera-box">
+			<span class="tit">创建时间：</span>
+			 <input type="text" class="form-control datepicker" id="startDate" />
+			<span class="tit">至：</span>
+			 <input type="text" class="form-control datepicker" id="endDate" />
+		</div>
+		<div class="opera-box">
+				<div class="pull-right">
+					<a class="btn btn-default btn-query" id="searchBtn"><i class="icon fa fa-search"></i> 查 询</a>
+					<a class="btn btn-default btn-query" id="export" onclick="exportExcel()"><i class="icon fa fa-arrow-down"></i> 导 出</a>
+				</div>
+			</div>
+		<div class="table-box">
+			<table class="table table-bordered" id="proTable">
+				<thead>
+					<tr>
+						<th>序号</th>
+						<th>项目名称</th>
+						<th>信息来源</th>
+						<th>负责人</th>
+						<th>客户名称</th>
+						<th>项目类型</th>
+						<th>状态</th>
+						<th>创建时间</th>
+					</tr>
+				</thead>
+				<tbody>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>

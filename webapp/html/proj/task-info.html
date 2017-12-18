@@ -1,0 +1,59 @@
+
+<script src="../../js/inner/task-info.js"></script>
+</head>
+<body class="expert-body">
+<div>
+		<h3 class="m-crumb">
+			当前位置：<span>项目管理-进度管理</span>
+		</h3>
+		<div class="box">
+			<div class="opera-box">
+				<span class="tit">项目名称：</span>
+					<input type="text" class="form-control" id="name" /> 
+				<span class="tit">开始时间：</span>
+					<input type="text" class="form-control datepicker" id="startDate" required readonly maxlength="50"/>
+				<span class="tit">结束时间：</span>
+					<input type="text" class="form-control datepicker" id="endDate" required readonly maxlength="50"/>
+				<span class="tit">项目状态：</span> 
+					<select id="status" class="form-control">
+						<option value="">请选择</option>
+						<option value="前期洽谈">前期洽谈</option>
+						<option value="合同签订">合同签订</option>
+						<option value="初稿">提交初稿</option>
+						<option value="终稿">提交终稿</option>
+						<option value="项目结束">项目结束</option>
+					</select>
+			</div>
+			<div class="opera-box">
+				<span class="tit">客户名称：</span> 
+				<input type="text" class="form-control" id="customerName" /> 
+			</div>
+			<div class="opera-box">
+				<div class="pull-right">
+					<a class="btn btn-default btn-query" id="searchBtn"><i class="icon fa fa-search"></i> 查 询</a>
+				</div>
+			</div>
+
+			<div class="table-box">
+				<table class="table table-bordered" id="table">
+					<thead>
+						<tr>
+							<th><input type="checkbox" id="selectAll" /></th>
+							<th>编号</th>
+							<th>项目名称</th>
+							<th>客户名称</th>
+							<th>客户负责人</th>
+							<th>联系电话</th>
+							<th>项目开始时间</th>
+							<th>项目截止时间</th>
+							<th style="width: 180px;">项目状态</th>
+							<th>操作</th>
+						</tr>
+					</thead>
+					<tbody>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+	</body></html>

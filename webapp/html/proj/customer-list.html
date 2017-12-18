@@ -1,0 +1,349 @@
+<script src="../../js/inner/customer.js"></script>
+<div class="expert-body">
+	<h3 class="m-crumb">
+			当前位置：<span>客户管理-客户信息</span>
+		</h3>
+		<div class="box">
+			<div class="opera-box">
+				<span class="tit">联系人：</span> 
+					<input type="text" class="form-control" id="compAndDeptAndName" /> 
+			</div>
+			<div class="opera-box">
+				<div class="pull-right">
+					<a class="btn btn-default btn-query" id="searchBtn"><i class="icon fa fa-search"></i> 查 询</a>
+					<a class="btn btn-default btn-add" data-toggle="modal" data-target="#addModal" id="addLink"><i class="icon fa fa-plus"></i> 新 增</a> 
+					<a class="btn btn-default btn-del" id="delSelect"><i class="icon fa fa-trash-o"></i> 删 除</a>
+					<a class="btn btn-default" data-toggle="modal" data-target="#importModal" onclick="preImport()"><i class="icon fa fa-arrow-circle-o-up"></i> 导入</a>
+				</div>
+			</div>
+			<div class="table-box">
+				<table class="table table-bordered" id="table">
+					<thead>
+						<tr>
+							<th><input type="checkbox" id="selectAll" /></th>
+							<th>联系人</th>
+							<th>单位名称</th>
+							<th>部门</th>
+							<th>职务</th>
+							<th>手机号</th>
+							<th>创建时间</th>
+							<th>操作</th>
+						</tr>
+					</thead>
+					<tbody>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>	
+	<div id="delModal" class="modal fade del-modal" tabindex="-1" role="dialog">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title">删除信息</h4>
+				</div>
+				<div class="modal-body">
+					<i class="del-warn"></i>确定删除吗？删除后将无法恢复！
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" id="delBtn">确定</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal"><i class="icon fa fa-times"></i> 取消</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="alertModal" class="modal fade del-modal" tabindex="-1" role="dialog">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title">提示</h4>
+				</div>
+				<div class="modal-body">
+					<i class="del-warn"></i>请选择希望删除的数据。
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" data-dismiss="modal">确定</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="addModal" class="modal fade add-modal" tabindex="-1" role="dialog">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content" style="width:600px;">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title">新增信息</h4>
+				</div>
+				<div class="modal-body">
+					<form id="addForm">
+						<div class="form-box">
+							<span class="tit"><i class="icon fa fa-asterisk red smaller-70"></i>联系人：</span>
+							<input type="text" class="form-control" name="name" placeholder="请输入客户名称"
+								required maxlength="50" />
+						</div>
+						<div class="form-box">
+							<span class="tit"><i class="icon fa fa-asterisk red smaller-70"></i>单位名称：</span> 
+							<input type="text" class="form-control" name="company" placeholder="请输入单位名称"
+								required maxlength="50" />
+						</div>
+						<div class="form-box">
+							<span class="tit"><i class="icon fa fa-asterisk red smaller-70"></i>单位类型：</span> 
+							<select name="companyType" class="form-control">
+							</select>
+						</div>
+						<div class="form-box">
+							<span class="tit"><i class="icon fa fa-asterisk red smaller-70"></i>部门：</span> 
+							<input type="text" class="form-control" name="department" placeholder="请输入部门名称"
+							required maxlength="50"/>
+						</div>
+						<div class="form-box">
+							<span class="tit">职务：</span>
+							<input type="text" class="form-control" name="post" placeholder="请输入职务名称"
+							maxlength="50"/>
+						</div>
+						<div class="form-box">
+							<span class="tit"><i class="icon fa fa-asterisk red smaller-70"></i>手机电话：</span>
+							 <input type="text" class="form-control phoneZH" name="phone" placeholder="请输入手机电话" 
+							 required maxlength="11"/>
+						</div>
+						<div class="form-box">
+							<span class="tit">办公室电话：</span> 
+							<input type="text" class="form-control isPhone" name="officePhone" placeholder="请输入办公室电话" maxlength="50"/>
+						</div>
+						<div class="form-box">
+							<span class="tit">传真：</span> 
+							<input type="text" class="form-control" name="fax" placeholder="请输入传真" maxlength="50"/>
+						</div>
+						<div class="form-box">
+							<span class="tit">电子邮件：</span> 
+							<input type="text" class="form-control" name="email" placeholder="请输入电子邮件" maxlength="50"/>
+						</div>
+						<div class="form-box">
+							<span class="tit">邮编：</span> 
+							<input type="text" class="form-control" name="mailingNumber" placeholder="请输入邮编" maxlength="50"/>
+						</div>
+						<div class="form-box">
+							<span class="tit">邮寄地址：</span> 
+							<input type="text" class="form-control" name="mailingAddress" placeholder="请输入邮寄地址" maxlength="50"/>
+						</div>
+						<div class="form-box">
+							<span class="tit">从事领域：</span> 
+							<input type="text" class="form-control" name="field" placeholder="请输入从事领域" maxlength="50"/>
+						</div>
+						<div class="form-box">
+							<span class="tit">来源：</span> 
+							<textarea rows="2" class="form-control" name="source" placeholder="请输入来源" maxlength="200"></textarea>
+						</div>
+						<div class="form-box">
+							<span class="tit">备注：</span>
+							<textarea rows="2" class="form-control" name="descn" placeholder="请输入备注" maxlength="200" ></textarea>
+						</div>
+						<span id="addErrorMessage" style="color:red"></span>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" id="addSaveBtn"><i class="icon fa fa-save"></i> 保存</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal"><i class="icon fa fa-times"></i> 取消</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="editModal" class="modal fade edit-modal" tabindex="-1" role="dialog">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content" style="width:600px;">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title">编辑信息</h4>
+				</div>
+				<div class="modal-body">
+					<form id="editForm">
+						<input type="hidden" name="id">
+						<input type="hidden" name="createTime">
+						<div class="form-box">
+							<span class="tit"><i class="icon fa fa-asterisk red smaller-70"></i>联系人：</span>
+							<input type="text" class="form-control" name="name" placeholder="请输入客户名称"
+								required maxlength="50" />
+						</div>
+						<div class="form-box">
+							<span class="tit"><i class="icon fa fa-asterisk red smaller-70"></i>单位名称：</span> 
+							<input type="text" class="form-control" name="company" placeholder="请输入单位名称"
+								required maxlength="50" />
+						</div>
+						<div class="form-box">
+							<span class="tit"><i class="icon fa fa-asterisk red smaller-70"></i>单位类型：</span> 
+							<select name="companyType" class="form-control">
+							</select>
+						</div>
+						<div class="form-box">
+							<span class="tit"><i class="icon fa fa-asterisk red smaller-70"></i>部门：</span> 
+							<input type="text" class="form-control" name="department" placeholder="请输入部门名称"
+							required maxlength="50"/>
+						</div>
+						<div class="form-box">
+							<span class="tit">职务：</span>
+							<input type="text" class="form-control" name="post" placeholder="请输入职务名称"
+							maxlength="50"/>
+						</div>
+						<div class="form-box">
+							<span class="tit"><i class="icon fa fa-asterisk red smaller-70"></i>手机电话：</span>
+							 <input type="text" class="form-control phoneZH" name="phone" placeholder="请输入手机电话" 
+							 required maxlength="11"/>
+						</div>
+						<div class="form-box">
+							<span class="tit">办公室电话：</span> 
+							<input type="text" class="form-control isPhone" name="officePhone" placeholder="请输入办公室电话" maxlength="50"/>
+						</div>
+						<div class="form-box">
+							<span class="tit">传真：</span> 
+							<input type="text" class="form-control" name="fax" placeholder="请输入传真" maxlength="50"/>
+						</div>
+						<div class="form-box">
+							<span class="tit">电子邮件：</span> 
+							<input type="text" class="form-control" name="email" placeholder="请输入电子邮件" maxlength="50"/>
+						</div>
+						<div class="form-box">
+							<span class="tit">邮编：</span> 
+							<input type="text" class="form-control" name="mailingNumber" placeholder="请输入邮编" maxlength="50"/>
+						</div>
+						<div class="form-box">
+							<span class="tit">邮寄地址：</span> 
+							<input type="text" class="form-control" name="mailingAddress" placeholder="请输入邮寄地址" maxlength="50"/>
+						</div>
+						<div class="form-box">
+							<span class="tit">从事领域：</span> 
+							<input type="text" class="form-control" name="field" placeholder="请输入从事领域" maxlength="50"/>
+						</div>
+						<div class="form-box">
+							<span class="tit">来源：</span> 
+							<textarea rows="2" class="form-control" name="source" placeholder="请输入来源" maxlength="200"></textarea>
+						</div>
+						<div class="form-box">
+							<span class="tit">备注：</span>
+							<textarea rows="2" class="form-control" name="descn" placeholder="请输入备注" maxlength="200" ></textarea>
+						</div>
+						<span id="editErrorMessage" style="color:red"></span>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" id="editSaveBtn"><i class="icon fa fa-save"></i> 保存</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal"><i class="icon fa fa-times"></i> 取消</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div id="viewModal" class="modal fade add-modal" tabindex="-1" role="dialog">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content" style="width:600px;">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title">查看信息</h4>
+				</div>
+				<div class="modal-body">
+					<form id="viewForm">
+						<div class="form-box">
+							<span class="tit"><i class="icon fa fa-asterisk red smaller-70"></i>联系人：</span>
+							<input type="text" class="form-control" name="name" placeholder="请输入客户名称"
+								required maxlength="50" />
+						</div>
+						<div class="form-box">
+							<span class="tit"><i class="icon fa fa-asterisk red smaller-70"></i>单位名称：</span> 
+							<input type="text" class="form-control" name="company" placeholder="请输入单位名称"
+								required maxlength="50" />
+						</div>
+						<div class="form-box">
+							<span class="tit"><i class="icon fa fa-asterisk red smaller-70"></i>单位类型：</span> 
+							<select name="companyType" class="form-control">
+							</select>
+						</div>
+						<div class="form-box">
+							<span class="tit"><i class="icon fa fa-asterisk red smaller-70"></i>部门：</span> 
+							<input type="text" class="form-control" name="department" placeholder="请输入部门名称"
+							required maxlength="50"/>
+						</div>
+						<div class="form-box">
+							<span class="tit">职务：</span>
+							<input type="text" class="form-control" name="post" placeholder="请输入职务名称"
+							maxlength="50"/>
+						</div>
+						<div class="form-box">
+							<span class="tit"><i class="icon fa fa-asterisk red smaller-70"></i>手机电话：</span>
+							 <input type="text" class="form-control" name="phone" placeholder="请输入手机电话" 
+							 required maxlength="11"/>
+						</div>
+						<div class="form-box">
+							<span class="tit">办公室电话：</span> 
+							<input type="text" class="form-control" name="officePhone" placeholder="请输入办公室电话" maxlength="50"/>
+						</div>
+						<div class="form-box">
+							<span class="tit">传真：</span> 
+							<input type="text" class="form-control" name="fax" placeholder="请输入传真" maxlength="50"/>
+						</div>
+						<div class="form-box">
+							<span class="tit">电子邮件：</span> 
+							<input type="text" class="form-control" name="email" placeholder="请输入电子邮件" maxlength="50"/>
+						</div>
+						<div class="form-box">
+							<span class="tit">邮编：</span> 
+							<input type="text" class="form-control" name="mailingNumber" placeholder="请输入邮编" maxlength="50"/>
+						</div>
+						<div class="form-box">
+							<span class="tit">邮寄地址：</span> 
+							<input type="text" class="form-control" name="mailingAddress" placeholder="请输入邮寄地址" maxlength="50"/>
+						</div>
+						<div class="form-box">
+							<span class="tit">从事领域：</span> 
+							<input type="text" class="form-control" name="field" placeholder="请输入从事领域" maxlength="50"/>
+						</div>
+						<div class="form-box">
+							<span class="tit">来源：</span> 
+							<textarea rows="2" class="form-control" name="source" placeholder="请输入来源" maxlength="200"></textarea>
+						</div>
+						<div class="form-box">
+							<span class="tit">备注：</span>
+							<textarea rows="2" class="form-control" name="descn" placeholder="请输入备注" maxlength="200" ></textarea>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="importModal" class="modal fade add-modal" tabindex="-1" role="dialog">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content" style="width:600px;">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title">导入数据</h4>
+				</div>
+				<div class="modal-body">
+					<form id="importForm">
+						<div class="form-box">
+							<span class="tit">客户信息文件：</span>
+							<a href="javascript:;" class="a-upload"><input id="customerFile" type="file" name="file" multiple onchange ="oneupload(null,null,'customerFile','customerFiles')"/>点击上传文件</a>
+						</div>
+						<div id="customerFiles">
+						
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-primary" onclick="saveImport()"><i class="icon fa fa-save"></i> 保存</button>
+							<button type="button" class="btn btn-default" data-dismiss="modal"><i class="icon fa fa-times"></i> 取消</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>

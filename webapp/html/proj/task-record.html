@@ -1,0 +1,150 @@
+<script src="../../js/inner/task-record.js"></script>
+<link rel="stylesheet" href="../../css/find.css">
+<style type="text/css">
+	ul > li > div > input{
+	    border: 0;
+    	outline: none;
+    	width: 280px;
+	}
+</style>
+<body class="expert-body">
+	<div>
+		<h3 class="m-crumb">
+			当前位置：<span>进度管理-项目列表-进度管理-完成任务</span>
+		</h3>
+		
+		<div class="manage_detail">
+			<div class="opera-box">
+				<div class="pull-right">
+					<a class="btn btn-default" onclick="returnClick()">返回</a>
+				</div>
+			</div>
+			<div class="row clearfix">
+		 		<div class="page-header">任务基本信息</div>
+		 		<form id="taskMsg">
+				<div class="table">
+				    <ul>
+				        <li>
+				            <div class="one">任务名称：</div>
+				            <div class="two"><input name="name" readonly/> </div>
+				            <div class="three">任务类型：</div>
+				            <div class="four"><input name="type" readonly/></div>
+				            <div class="five">项目名称：</div>
+				            <div class="six" ><input name="projectName" readonly/></div>
+				        </li>
+				        <li>
+				            <div class="one">开始时间：</div>
+				            <div class="two"><input name="startDate" readonly/></div>
+				            <div class="three">更新时间：</div>
+				            <div class="four"><input name="updateTime" readonly/></div>
+				            <div class="five">结束时间：</div>
+				            <div class="six" ><input name="endDate" readonly/></div>
+				        </li>
+				        <li>
+				            <div class="one">描述：</div>
+				            <div class="two" ><input name="content" readonly/></div>
+				            <div class="three diaoyan">目的地：</div>
+				            <div class="four diaoyan"><input name="dest" readonly/></div>
+				        	<div class="five diaoyan">其他人员：</div>
+				            <div class="six diaoyan"><input name="otherpeople" readonly/></div>
+				        </li>
+				    </ul>
+				</div>
+				</form>
+			</div>
+		</div>
+		
+		<div class="box">
+			<div class="opera-box">
+				<div class="pull-right" id="taskmunebar">
+					<!-- 在js中添加 -->
+				</div>
+			</div>
+			<div class="table-box">
+				<table class="table table-bordered" id="table">
+					<thead>
+						<tr>
+							<th>姓名</th>
+							<th>完成时间</th>
+							<th>状态</th>
+							<th>附件</th>
+							<th>描述</th>
+							<th>是否超时</th>
+						</tr>
+					</thead>
+					<tbody>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+	
+	<div id="addModal" class="modal fade add-modal" tabindex="-1"
+		role="dialog">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title">完成我的任务</h4>
+				</div>
+				<div class="modal-body">
+					<form id="addForm">
+					<input type="hidden" name="id">
+					<input type="hidden" name="taskId">
+					<input type="hidden" name="createTime">
+					<input type="hidden" name="executorId">
+					<input type="hidden" name="status">
+						<div class="form-box">
+							<span class="tit">完成人：</span>
+							<input name="executorName" readonly class="form-control"/>
+						</div>
+						<div class="diaoyan">
+						
+						<div class="form-box">
+							<span class="tit"><i class="icon fa fa-asterisk red smaller-70"></i>对接人的姓名：</span> 
+							<input name="dockingName" required class="form-control"/>
+						</div>
+						<div class="form-box">
+							<span class="tit"><i class="icon fa fa-asterisk red smaller-70"></i>对接人联系电话：</span> 
+							<input name="dockingPhone" required class="form-control" maxlength="11" pattern="^1[3,4,5,7,8]\d{9}$"/>
+						</div>
+						<div class="form-box">
+							<span class="tit"><i class="icon fa fa-asterisk red smaller-70"></i>对接人部门：</span> 
+							<input name="dockingDept" required class="form-control"/>
+						</div>
+						
+						</div>
+						<div class="form-box">
+							<span class="tit">描述：</span> 
+							<textarea rows="2" class="form-control" name="content" placeholder="请输入描述" maxlength="200"></textarea>
+						</div>
+						<div class="form-box" id="timeoutReason" style="display: none;">
+							<input type="hidden" name="timeoutReason">
+							<span class="tit" style="color: #f00;"><i class="icon fa fa-asterisk red smaller-70"></i>延迟原因：</span> 
+							<select class="form-control">
+							</select>
+							<span class="tit" style="color: #f00;"><i class="icon fa fa-asterisk red smaller-70"></i></span>
+							<textarea required rows="2" class="form-control" placeholder="请输入描述" maxlength="200"></textarea>
+						</div>
+						<!--文件上传需要添加 -->
+						<div class="form-box">
+							<span class="tit">上传附件：</span>
+							<a href="javascript:;" class="a-upload"><input id="File" type="file" name="file" multiple />点击上传文件</a>
+						</div>
+						<div id="FileText">
+						
+						</div>
+						<span id="addErrorMessage" style="color:red"></span>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" id="addSaveBtn"><i class="icon fa fa-save"></i> 保存</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal"><i class="icon fa fa-times"></i> 取消</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>

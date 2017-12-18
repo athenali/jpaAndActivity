@@ -1,0 +1,60 @@
+<script src="../../js/inner/record.js"></script>
+<div class="expert-body">
+		<h3 class="m-crumb">
+			当前位置：<span>人事管理-出差记录</span>
+		</h3>
+		<div class="box">
+			<div class="opera-box" id="select">
+				<span class="tit">项目名称：</span> <input type="text" class="form-control" id="projectName" /> 
+				<span class="tit">出差人：</span> <input type="text" class="form-control" id="userName" /> 
+			
+				<span class="tit">开始时间：</span> 
+							 <input type="text" class="form-control datepicker" name="startDate" id="startDate" required maxlength="50" style="width:auto;display:inline-block;" />
+				<span class="tit">结束时间：</span> 
+							<input type="text" class="form-control datepicker" name="endDate" id="endDate" required maxlength="50" style="width:auto;display:inline-block;" />
+			</div>
+			<div class="opera-box">
+				<span class="tit">审批状态：</span> 
+				<select class = "form-control" name="status" id="status" required>
+					<option value="">全部</option>
+					<option value="inProgress">审核中</option>
+					<option value="recal">已撤退</option>
+					<option value="complete">审核完成</option>
+				</select>
+				<span class="tit">出差类型：</span> 
+				<select class = "form-control" name="evectionType" id="evectionType" required>
+					<option value="">全部</option>
+					<option value="001">项目出差</option>
+                    <option value="002">会议出差</option>
+				</select>
+			</div>
+			<div class="opera-box">
+				<div class="pull-right">
+					<a class="btn btn-default btn-query" id="searchBtn"><i class="icon fa fa-search"></i> 查 询</a>
+				</div>
+			</div>
+			<div class="table-box">
+				<table class="table table-bordered" id="table">
+					<thead>
+						<tr>
+							<!-- <th><input type="checkbox" id="selectAll" /></th> -->
+							<th>序号</th>
+							 <th>出差类型</th>
+							<th>项目名称</th>
+							<th>申请人</th>
+							<th>出差人</th>
+							<th>出差事由</th>
+							<th>始发地</th>
+							<th>目的地</th>
+							<th>开始时间</th>
+							<th>结束时间</th>
+							<th>审批状态</th>
+							<th>操作</th>
+						</tr>
+					</thead>
+					<tbody>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>

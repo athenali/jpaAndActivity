@@ -1,0 +1,102 @@
+<link href='../../css/fullcalendar.css' rel='stylesheet' />
+<link href='../../css/fullcalendar.print.css' rel='stylesheet'
+	media='print' />
+<script src="../../js/moment.min.js"></script>
+<script src="../../js/fullcalendar.js"></script>
+<script src="../../js/locale-all.js"></script>
+<script src="../../js/locale-all.js"></script>
+<link href='../../css/bootstrap-dialog.min.css' rel='stylesheet' />
+<script src="../../js/bootstrap-dialog.min.js"></script>
+<script src="../../js/inner/principalHome.js"></script>
+<div class="index-body">
+	<h3 class="m-crumb">
+		当前位置：<span>我的首页</span>
+	</h3>
+	<div class="box">
+		<div class="tit-box clearfix">
+			<div class="col-xs-4" style="background-color: #E1FFFF">
+				<div class="pro" id="contract">
+					<img id="contractimg" alt="contractimg" src="../../img/home/contract.png" style="margin-left: 69%">
+					<h3 style="margin-left: -9%;margin-top: -27%;font-style: italic;">机会信息汇总</h3>
+					<h4 id="talkings" style="margin-top: 3%;margin-left: 3%">洽谈中<a id="talking"  style="margin-left: 23%;color: #FF0000"></a></h4>
+					<h4 id="signs" style="margin-top: 2%;margin-left: 3%">已签订<a id="sign" style="margin-left: 23%;color: #FF0000"></a></h4>
+					<h4 id="stops" style="margin-top: 2%;margin-left: 3%">机会终止<a id="stop" style="margin-left: 19%;color: #FF0000"></a></h4>
+				</div>
+			</div>	
+			<div class="col-xs-4" style="background-color: #FAFAD2">
+				<div class="ser" id="money">
+				<img id="moneyimg" alt="contractimg" src="../../img/home/money.png" width="90px" height="90px" style="margin-left: 69%;margin-top: 7px;">
+					<h3 style="margin-left: -9%;margin-top: -27%;font-style: italic;">回款信息汇总</h3>
+					<h4 id="ok" style="margin-top: 3%;margin-left: 3%">已回款<a id="moneyok" style="margin-left: 23%;color: #FF0000"></a></h4>
+					<h4 id="no" style="margin-top: 2%;margin-left: 3%">未回款<a id="moneyno" style="margin-left: 23%;color: #FF0000"></a></h4>
+				</div>
+			</div>
+			<div class="col-xs-4" style="background-color: #DCDCDC">
+				<div class="know" id="schedule">
+				<img id="scheduleimg" alt="contractimg" src="../../img/home/schedule.png"style="margin-left: 69%;margin-top: -3px;">
+					<h3 style="margin-left: -9%;margin-top: -27%;font-style: italic;">项目进度汇总</h3>
+					<h4 id="contractsigns" style="margin-top: 3%;margin-left: 3%">合同签订<a id="contractsign" style="margin-left: 5%;color: #FF0000"></a></h4>
+					<h4 id="surveys" style="margin-top: -4%;margin-left: 33%">出差调研<a id="survey" style="margin-left: 5%;color: #FF0000"></a></h4>
+					<h4 id="surveysFin" style="margin-top: 2%;margin-left: 3%">调研完成<a id="surveysFins" style="margin-left: 5%;color: #FF0000"></a></h4>
+					<h4 id="writeDrafts" style="margin-top: -4%;margin-left: 33%">编写初稿<a id="writeDraft" style="margin-left: 5%;color: #FF0000"></a></h4>
+					<h4 id="drafts" style="margin-top: 2%;margin-left: 3%">提交初稿<a id="draft" style="margin-left: 5%;color: #FF0000"></a></h4>
+					<h4 id="writeFinaldrafts" style="margin-top: -4%;margin-left: 33%">编写终稿<a id="writeFinaldraft" style="margin-left: 5%;color: #FF0000"></a></h4>
+					<h4 id="finaldrafts" style="margin-top: 2%;margin-left: 3%">提交终稿<a id="finaldraft" style="margin-left: 5%;color: #FF0000"></a></h4>
+					<h4 id="finishs" style="margin-top: -4%;margin-left: 33%">项目结束<a id="finish" style="margin-left: 5%;color: #FF0000"></a></h4>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="table-box" style="margin-top: 18px; margin-left: 0.59%;margin-right: 0.59%;"
+		id="contractTable">
+		<table class="table table-bordered table-striped table-hover" cellspacing="0" id="contractTables">
+			<thead>
+				<tr>
+					<th>项目名称</th>
+					<th>合同名称</th>
+					<th>合同类型</th>
+					<th>合同编号</th>
+					<th>创建时间</th>
+					<th>合同金额</th>
+					<th>签订时间</th>
+					<th>状态</th>
+				</tr>
+			</thead>
+			<tbody>
+			</tbody>
+		</table>
+	</div>
+	<div class="table-box" style="margin-top: 18px; margin-left: 0.59%;margin-right: 0.59%;" 
+		id="moneyTable">
+		<table class="table table-bordered table-striped table-hover" cellspacing="0" id="moneyTables">
+			<thead>
+				<tr>
+					<th>项目名称</th>
+					<th>项目类型</th>
+					<th>项目负责人</th>
+					<th>回款金额</th>
+					<th>项目总金额</th>
+				</tr>
+			</thead>
+			<tbody>
+			</tbody>
+		</table>
+	</div>
+	<div class="table-box" style="margin-top: 18px; margin-left: 0.59%;margin-right: 0.59%;"
+		id="scheduleTable">
+		<table class="table table-bordered table-striped table-hover" cellspacing="0" id="scheduleTables">
+			<thead>
+				<tr>
+					<th>项目名称</th>
+					<th>项目类型</th>
+					<th>项目负责人</th>
+					<th>项目创建人</th>
+					<th>项目成员</th>
+					<th>项目进度</th>
+				</tr>
+			</thead>
+			<tbody>
+			</tbody>
+		</table>
+	</div>
+</div>
